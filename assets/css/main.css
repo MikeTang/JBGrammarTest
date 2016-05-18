@@ -135,6 +135,10 @@ body{
     float: none !important;   
 }
 
+.study_example p b{
+    color:#7eb530;
+}
+
 
 /* ==========================================================================
  custom styles

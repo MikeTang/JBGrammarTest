@@ -32,6 +32,7 @@ class Study extends CI_Controller
         //other info
         $data['study_nums'] = $study_nums;
         $data['result_id'] = $result_id;
+        $data['title'] = 'Study Unit ' . $study_units[$page-1]->No; 
 
         //current page's study unit content
         $data['study_unit'] = $study_units[$page-1];
