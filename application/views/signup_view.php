@@ -3,8 +3,7 @@
           <div class="col-xs-12">
                     <div class="row">
                          <div class="col-xs-12 t_c">
-                              <p class="sub_title">Welcome to</p>
-                              <h1 class="main_title"><?php echo TITLE;?></h1>
+                              <h1 class="main_title"><?php echo $_SESSION['TITLE_WELCOME']; ?></h1>
                          </div>
                          <!-- <div class="col-xs-12">
                               
@@ -24,29 +23,29 @@
 
                          <fieldset>
                               <div class="input-group">
-                                   <span class="input-group-addon input_label" id="basic-addon1">Phone Number</span>
+                                   <span class="input-group-addon input_label" id="basic-addon1"><?php echo $_SESSION['LABEL_PHONENUMBER']; ?></span>
                                    <input class="form-control" id="txt_phone" name="txt_phone" placeholder="" type="text" value="" aria-describedby="basic-addon1">
                                    <span class="text-danger"><?php echo form_error('txt_phone'); ?></span>
                                    <div class="input-group-addon">
-                                        <a class="btn btn-default btn-code">Get Code</a>
+                                        <a class="btn btn-default btn-code"><?php echo $_SESSION['BTN_GETCODE']; ?></a>
                                    </div>
                                    
                               </div>
 
                               <div class="input-group mt10">
-                                   <span class="input-group-addon input_label" id="basic-addon1">Validation Code</span>
+                                   <span class="input-group-addon input_label" id="basic-addon1"><?php echo $_SESSION['LABEL_VALIDATIONCODE']; ?></span>
                                    <input class="form-control" id="txt_phoneCode" name="txt_phoneCode" placeholder="" type="text" value="" aria-describedby="basic-addon1">
                                    <span class="text-danger"><?php echo form_error('txt_phoneCode'); ?></span>
                               </div>
 
                               <div class="input-group mt10">
-                                   <span class="input-group-addon input_label" id="basic-addon1">Password</span>
+                                   <span class="input-group-addon input_label" id="basic-addon1"><?php echo $_SESSION['LABEL_PASSWORD']; ?></span>
                                    <input class="form-control" id="txt_password" name="txt_password" placeholder="" type="password" value="" aria-describedby="basic-addon1">
                                    <span class="text-danger"><?php echo form_error('txt_password'); ?></span>
                               </div>
 
                               <div class="input-group mt10">
-                                   <span class="input-group-addon input_label" id="basic-addon1">Repeat Password</span>
+                                   <span class="input-group-addon input_label" id="basic-addon1"><?php echo $_SESSION['LABEL_REPASSWORD']; ?></span>
                                    <input class="form-control" id="txt_rpassword" name="txt_rpassword" placeholder="" type="password" value="" aria-describedby="basic-addon1">
                                    <span class="text-danger"><?php echo form_error('txt_rpassword'); ?></span>
                               </div>
@@ -57,7 +56,7 @@
 
                               <div class="form-group mt20">
                                    <div class="col-lg-12 col-sm-12 t_c">
-                                        <input id="btn_signup" name="btn_signup" type="submit" class="btn btn-default t_c green_button transition" value="Sign Up" />
+                                        <input id="btn_signup" name="btn_signup" type="submit" class="btn btn-default t_c green_button transition" value="<?php echo $_SESSION['BTN_SIGNUP']; ?>" />
                                    </div>
                               </div>
                          </fieldset>

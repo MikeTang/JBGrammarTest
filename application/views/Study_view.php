@@ -1,7 +1,7 @@
 <div class="content">
 	<div class="row mt40">
 		<div class="col-xs-12">
-			<div class="back"><a href="<?php echo site_url('test/result/' . $result_id);?>"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to Test Result</a></div>
+			<div class="back"><a href="<?php echo site_url('test/result/' . $result_id);?>"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> <?php echo $_SESSION['LINK_BACKTEST'] ?></a></div>
 			<div class="box">
 				<div class="box_top">
 					
@@ -41,11 +41,11 @@
 				<div class="box_bottom">
 					
 					<?php if ($current_page > 1):?>
-						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page-1) );?>" class="btn back_button f_l transition">Back</a>
+						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page-1) );?>" class="btn back_button f_l transition"><?php echo $_SESSION['BTN_BACK']; ?></a>
 					<?php endif;?>
 						
 					<?php if ($current_page < $total_pages):?>
-						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page+1)   );?>" class="btn btn-default next_button f_r transition" >Next</a>
+						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page+1)   );?>" class="btn btn-default next_button f_r transition" ><?php echo $_SESSION['BTN_NEXT']; ?></a>
 					<?php endif; ?>
 				</div>
 

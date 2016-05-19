@@ -22,6 +22,16 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe"></i> 
+          <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="<?php echo site_url('lang/set/en');?>">English</a></li>
+            <li><a href="<?php echo site_url('lang/set/cn');?>">中文</a></li>
+          </ul>
+        </li>
+
         <?php if (isset($_SESSION["user_id"])) :?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> 
@@ -30,12 +40,12 @@
           <ul class="dropdown-menu">
             <!-- <li><a href="#">My Account</a></li> -->
             <!-- <li role="separator" class="divider"></li> -->
-            <li><a href="<?php echo site_url('login/logout');?>">Logout</a></li>
+            <li><a href="<?php echo site_url('login/logout');?>"><?php echo $_SESSION['BTN_LOGOUT']; ?></a></li>
           </ul>
         </li>
         <?php else :?>
-          <li><a href="<?php echo site_url('signup/index');?>">Sign Up</a></li>
-          <li><a href="<?php echo site_url('login/index');?>">Login</a></li>
+          <li><a href="<?php echo site_url('signup/index');?>"><?php echo $_SESSION['BTN_SIGNUP']; ?></a></li>
+          <li><a href="<?php echo site_url('login/index');?>"><?php echo $_SESSION['BTN_LOGIN']; ?></a></li>
         <?php endif; ?>
   
       </ul>

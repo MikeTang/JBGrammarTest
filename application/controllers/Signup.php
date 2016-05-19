@@ -20,6 +20,12 @@ class Signup extends CI_Controller
 
     public function index()
      {
+        $_SESSION["current_page"] = current_url();
+        //check if locale is set
+        if (!isset($_SESSION["locale"])){
+           redirect("lang/set/cn");     
+        }
+        
         date_default_timezone_set('Asia/Hong_Kong');
           //get the posted values
           $phone = $this->input->post("txt_phone");
@@ -52,7 +58,7 @@ class Signup extends CI_Controller
           else
           {
                //if arrived here via pressing the sign up button
-               if ($this->input->post('btn_signup') == "Sign Up")
+               if ($this->input->post('btn_signup') == $_SESSION['BTN_SIGNUP'])
                {
                     //check if user exists
                     $usr_result = $this->login_model->get_user_by_phone($phone);

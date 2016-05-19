@@ -36,8 +36,8 @@
 						<div class="col-xs-12"><div class="line"></div></div>
 					</div>
 					
-					<h1 class="title">Complete the sentence</h1>
-					<h2 class="subtitle">Select all answers that apply</h2>
+					<h1 class="title"><?php echo $_SESSION['TITLE_COMPLETESENTENCE']; ?></h1>
+					<h2 class="subtitle"><?php echo $_SESSION['TEXT_SELECTALL']; ?></h2>
 					
 					<div class="sentence"><?php echo $num.'. '. $question->tests;?></div>
 					
@@ -97,10 +97,10 @@
 				<div class="box_bottom">
 					
 					<?php if ($num > 1):?>
-					<a href="<?php echo site_url('test/grammar/'. ($num-1) );?>" class="btn back_button f_l transition">Back</a>
+					<a href="<?php echo site_url('test/grammar/'. ($num-1) );?>" class="btn back_button f_l transition"><?php echo $_SESSION['BTN_BACK']; ?></a>
 					<?php endif;?>
 
-					<button type="submit" class="btn btn-default next_button f_r transition" name="submit">Next</button>
+					<button type="submit" class="btn btn-default next_button f_r transition" name="submit"><?php echo $_SESSION['BTN_NEXT']; ?></button>
 				</div>
 
 				</form>

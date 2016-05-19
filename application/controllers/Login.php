@@ -18,6 +18,11 @@ class Login extends CI_Controller
 
      public function index()
      {
+          $_SESSION["current_page"] = current_url();
+          //check if locale is set
+          if (!isset($_SESSION["locale"])){
+             redirect("lang/set/cn");     
+          }
 
           date_default_timezone_set('Asia/Hong_Kong');
           //get the posted values
@@ -46,7 +51,7 @@ class Login extends CI_Controller
           else
           {
                //if arrived here via pressing the login button
-               if ($this->input->post('btn_login') == "Login")
+               if ($this->input->post('btn_login') == $_SESSION['BTN_LOGIN'])
                {
                     //check if username and password is correct
                     $usr_result = $this->login_model->get_user2($phone, $password);

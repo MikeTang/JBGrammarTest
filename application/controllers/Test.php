@@ -18,6 +18,17 @@ class Test extends CI_Controller
 
     public function index(){
 
+        $_SESSION["current_page"] = current_url();
+          //check if locale is set
+          if (!isset($_SESSION["locale"])){
+             redirect("lang/set/cn");     
+          }
+
+        //check if locale is set
+        if (!isset($_SESSION["locale"])){
+           redirect("lang/set/cn");     
+        }
+
         if (isset($_SESSION["user_id"])){
              $user_id = $_SESSION["user_id"];
         }else{
@@ -53,6 +64,17 @@ class Test extends CI_Controller
     }
 
     public function grammar($num){
+
+        $_SESSION["current_page"] = current_url();
+          //check if locale is set
+          if (!isset($_SESSION["locale"])){
+             redirect("lang/set/cn");     
+          }
+
+        //check if locale is set
+        if (!isset($_SESSION["locale"])){
+           redirect("lang/set/cn");     
+        }
 
         //check if user is logged in
         if (isset($_SESSION["user_id"])){
@@ -131,6 +153,18 @@ class Test extends CI_Controller
     }
 
     public function result($id){
+
+        $_SESSION["current_page"] = current_url();
+          //check if locale is set
+          if (!isset($_SESSION["locale"])){
+             redirect("lang/set/cn");     
+          }
+
+        //check if locale is set
+        if (!isset($_SESSION["locale"])){
+           redirect("lang/set/cn");     
+        }
+        
         //how many answers are correct and get suggested study units
         $submission = $this->grammar_model->getSubmissionById($id);
         if ($submission->num_rows() != 0){

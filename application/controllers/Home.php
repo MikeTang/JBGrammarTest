@@ -18,6 +18,15 @@ class Home extends CI_Controller
 
      public function index(){
 
+          
+          $_SESSION["current_page"] = current_url();
+
+          //check if locale is set
+          if (!isset($_SESSION["locale"])){
+               redirect("lang/set/cn");     
+          }
+
+          //check if user is logged in
           if (isset($_SESSION["user_id"])){
                $user_id = $_SESSION["user_id"];
                $loggedIn = 1;
@@ -25,7 +34,7 @@ class Home extends CI_Controller
                $loggedIn = 0;
           }
 
-          $data['title'] = "Welcome to ".TITLE;
+          $data['title'] = $_SESSION['TITLE_WELCOME'];
           $data['loggedIn'] = $loggedIn;
 
           $this->load->view('templates/header', $data);

@@ -17,6 +17,12 @@ class Study extends CI_Controller
     }
 
     public function index($result_id, $study_nums, $page){
+
+        $_SESSION["current_page"] = current_url();
+        //check if locale is set
+        if (!isset($_SESSION["locale"])){
+           redirect("lang/set/cn");     
+        }
         //explode $study_nums string into an array
         $study_num_array = explode("-", $study_nums);
         $study_units = $this->dict_model->getStudyUnits($study_num_array);
