@@ -25,4 +25,16 @@ class Dict_model extends CI_Model
         return $query->result();
     }
 
+    function searchStudyUnits($query){
+       
+        $query = str_replace(" ", "%", $query);
+
+        $sql = "SELECT *
+        FROM grammarDict
+        WHERE Category like '%{$query}%' ";
+
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
 }?>

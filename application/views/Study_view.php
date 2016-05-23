@@ -1,7 +1,11 @@
 <div class="content">
 	<div class="row mt40">
 		<div class="col-xs-12">
-			<div class="back"><a href="<?php echo site_url('test/result/' . $result_id);?>"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> <?php echo $_SESSION['LINK_BACKTEST'] ?></a></div>
+			<div class="back">
+				<?php if ($result_id !=0): ?>
+				<a href="<?php echo site_url('test/result/' . $result_id);?>"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> <?php echo $_SESSION['LINK_BACKTEST'] ?></a>
+				<?php endif; ?>
+			</div>
 			<div class="box">
 				<div class="box_top">
 					

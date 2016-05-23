@@ -50,4 +50,45 @@ class Study extends CI_Controller
 
     }
 
+    public function search()
+    {
+      $_SESSION["current_page"] = current_url();
+      //check if locale is set
+      if (!isset($_SESSION["locale"])){
+         redirect("lang/set/cn");     
+      }
+
+      $data['title'] = 'Grammar Dictionary - Search'; 
+
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/nav', $data);
+      $this->load->view('grammar_search_view', $data);
+      $this->load->view('templates/footer_test');
+    }
+    public function search_result()
+    {
+      $_SESSION["current_page"] = current_url();
+      //check if locale is set
+      if (!isset($_SESSION["locale"])){
+         redirect("lang/set/cn");     
+      }
+
+      $query = $this->input->get('query');
+
+      if ($query == ''){
+        redirect('study/search');
+      }
+
+      $result = $this->dict_model->searchStudyUnits($query);
+
+      $data['title'] = 'Grammar Dictionary - Search';
+      $data['study_units'] = $result; 
+      $data['query'] = $query;
+
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/nav', $data);
+      $this->load->view('search_result_view', $data);
+      $this->load->view('templates/footer_test');
+    }
+
 }?>

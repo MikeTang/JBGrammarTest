@@ -48,6 +48,8 @@ class Lang extends CI_Controller
           $_SESSION['BTN_STARTSTUDY'] = $copy[0]->btnStartStudy;
           $_SESSION['BTN_STARTTEST'] = $copy[0]->btnStartTest;
           $_SESSION['LINK_BACKTEST'] = $copy[0]->linkBackTest;
+          $_SESSION['TITLE_GRAMMAR_DICT'] = $copy[0]->titleGrammarDict;
+          $_SESSION['BTN_STUDYALL'] = $copy[0]->btnStudyAll;
 
 
           redirect($_SESSION["current_page"]);
