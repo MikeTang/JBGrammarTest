@@ -14,9 +14,12 @@ class Study extends CI_Controller
       $this->load->library('form_validation');
       //load the login model
       $this->load->model('dict_model');
+      $this->load->model('info_model');
     }
 
     public function index($result_id, $study_nums, $page){
+
+
 
         $_SESSION["current_page"] = current_url();
         //check if locale is set
@@ -52,6 +55,15 @@ class Study extends CI_Controller
 
     public function search()
     {
+
+        //check if user is logged in
+        if (isset($_SESSION["user_id"])){
+             $user_id = $_SESSION["user_id"];
+        }else{
+          // echo "<script type=\"text/javascript\">alert('要使用语法字典请先注册登录');</script>";
+          redirect('Signup/index');
+        }
+
       $_SESSION["current_page"] = current_url();
       //check if locale is set
       if (!isset($_SESSION["locale"])){
@@ -67,16 +79,22 @@ class Study extends CI_Controller
     }
     public function search_result()
     {
+
+
       $_SESSION["current_page"] = current_url();
       //check if locale is set
       if (!isset($_SESSION["locale"])){
          redirect("lang/set/cn");     
       }
 
+
+
       $query = $this->input->get('query');
 
       if ($query == ''){
         redirect('study/search');
+      } else {
+        $this->info_model->create_keyword($query);
       }
 
       $result = $this->dict_model->searchStudyUnits($query);

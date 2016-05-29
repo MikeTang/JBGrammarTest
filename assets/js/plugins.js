@@ -18,6 +18,37 @@
         
     });
 
+    $('.btn-bug').click(function(e) {
+        var number = $('#txt_phone').val();
+        
+        if (number == ''){
+            alert('感谢反馈问题，已记录!');
+        }else{
+            $.ajax({
+              url: getCodeURL + '/' + number,
+              context: document.body
+            }).done(function(data) {
+              alert(data);
+            });
+        }
+        
+    });
+
+    $('.btn-toReg').click(function(e) {
+        var number = $('#txt_phone').val();
+        
+        if (number == ''){
+            alert('要使用语法字典请先注册登录!');
+        }else{
+            $.ajax({
+              url: getCodeURL + '/' + number,
+              context: document.body
+            }).done(function(data) {
+              alert(data);
+            });
+        }
+    });
+
     var method;
     var noop = function () {};
     var methods = [

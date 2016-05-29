@@ -24,7 +24,18 @@
       <ul class="nav navbar-nav navbar-right">
         
         <li>
-          <a href="<?php echo site_url('study/search'); ?>"><?php echo $_SESSION['TITLE_GRAMMAR_DICT']; ?></a>
+          <a href="<?php echo site_url('study/search'); ?>">
+            <?php echo $_SESSION['TITLE_GRAMMAR_DICT']; ?>
+          </a>
+        </li>
+        <li>
+
+          <a class="btn btn-default btn-bug" href="<?php 
+          $bugUrl = base_url(uri_string());
+          echo site_url('api/newBug/'.$bugUrl); ?>">
+            <?php echo '发现错误'; ?></a>
+            
+        </a>
         </li>
 
         <li class="dropdown">
