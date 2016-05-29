@@ -25,13 +25,24 @@
 						
 						<div class="row study_units">
 							<div class="col-xs-12 col-sm-5 center">
-								<br>
-								<br>
+								<br><br>
 								<?php foreach ($study_units as $study_unit): ?>
 									<?php if ($study_unit->Study_Unit != $study_unit_tracker):?>
 										<div class="study_unit row">
-											<a class="col-xs-5" href="<?php echo site_url('study/0/' . $study_unit->Study_Unit . '/1' );?>">Unit: <?php echo $study_unit->Study_Unit ;?></a>
-											<div class="col-xs-7"><?php echo $study_unit->Category; ?> </div>
+											<a class="col-xs-5" href="
+												<?php
+													$toURL = "study/0/{$study_unit->Study_Unit}/1";
+													echo site_url($toURL);
+												?>
+											" 
+											target="_blank" 
+											>
+											<?php echo "Unit: {$study_unit->Study_Unit}"?></a>
+
+											<div class="col-xs-7">
+												<?php echo $study_unit->Category; ?>
+											
+											</div>
 											 
 										</div>
 										<?php $study_unit_tracker = $study_unit->Study_Unit;?>

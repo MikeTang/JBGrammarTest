@@ -41,7 +41,8 @@
  *---------------------------------------------------------------
 */
 
-define('BASE_URL', 'http://yufa.jiongbook.com/');
+// define('BASE_URL', 'http://yufa.jiongbook.com/');
+define('BASE_URL', 'http://yufa/');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');

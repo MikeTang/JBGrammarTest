@@ -248,39 +248,45 @@ class Test extends CI_Controller
         $question = $this->grammar_model->getQuestion($question_no)[0];
 
         //create array to store answer data
-        $array = [];
-        $array["no"] = $question_no;
-        $array["correct answer"] = $question->answers;
-        $array["submitted answer"] = $submitted_answer;
+        $answerArray = [];
+        $answerArray["no"] = $question_no;
+        $answerArray["correct answer"] = $question->answers;
+        $answerArray["submitted answer"] = $submitted_answer;
 
         //create the array to store study unit data
-        $array2 = [];
-        $array2["unit"] = $question->study_unit;
-        $array2["category"] = $question->category;
+        $unitArray = [];
+        $unitArray["unit"] = $question->study_unit;
+        $unitArray["category"] = $question->category;
 
         //get user's previous submission
         $lastSubmission = $this->grammar_model->getInPorgressSubmission($user_id);
 
+        // echo $question->answers . "<br>";
+        // echo $submitted_answer;
         //if user never submitted, save new submission, else, update submission
-        if ($lastSubmission->num_rows() == 0){   
-
+        if ( $lastSubmission->num_rows() == 0 ){   
             //wrapper array for the answer data
-            $wrapper = [];
-            $wrapper[$group_no-1] = $array;
+            $answerWrapper = [];
+            $answerWrapper[$group_no-1] = $answerArray;
+            // print_r($answerArray);
+            // Array ( [no] => 1.6 [correct answer] => A [submitted answer] => C )
 
             //encode to json
-            $answerJson = json_encode($wrapper);
+            $answerJson = json_encode($answerWrapper);
 
             $unitJson = '';
-            //if answer was incorrect, store the study unit
-            if ($question->answers != $submitted_answer){
 
+            //if answer was incorrect, store the study unit
+            // if ($question->answers !== $submitted_answer){
+            if ($answerArray["correct answer"] != $answerArray["submitted answer"]){
+                // echo $submitted_answer;
                 //wrapper array for the study unit
-                $wrapper = [];
-                $wrapper[$group_no-1] = $array2;
+                $unitWrapper = [];
+                $unitWrapper[$group_no-1] = $unitArray;
 
                 //encode to json
-                $unitJson = json_encode($wrapper);
+                global $unitJson;
+                $unitJson = json_encode($unitWrapper);
             }
 
             //create data to store in db
@@ -293,27 +299,35 @@ class Test extends CI_Controller
 
         }else{
 
-            $wrapper = json_decode($lastSubmission->result()[0]->answers, true);
-            $wrapper[$group_no-1] = $array;
+            $answerWrapper = json_decode($lastSubmission->result()[0]->answers, true);
+            $answerWrapper[$group_no-1] = $answerArray;
 
             //encode to json
-            $answerJson = json_encode($wrapper);
+            $answerJson = json_encode($answerWrapper);
 
             $unitJson = '';
             //if answer was incorrect, store the study unit
-            if ($question->answers != $submitted_answer){
+            if ($answerArray["correct answer"] != $answerArray["submitted answer"]){
+            // if ($question->answers != $submitted_answer){
+                // print $submitted_answer;
+                // print_r($question->answers);
 
                 //wrapper array for the study unit
-                $wrapper = json_decode($lastSubmission->result()[0]->study_units, true);;
-                $wrapper[$group_no-1] = $array2;
+                $unitWrapper = json_decode($lastSubmission->result()[0]->study_units, true);
+
+                $unitWrapper[$group_no-1] = $unitArray;
 
                 //encode to json
-                $unitJson = json_encode($wrapper);
+                $unitJson = json_encode($unitWrapper);
+
+                $data = array(
+                   'study_units' => $unitJson
+                   );
+                $this->grammar_model->updateAnswer($user_id, $data);
             }
 
             $data = array(
                  'answers' => $answerJson,
-                 'study_units' => $unitJson
             );
             $this->grammar_model->updateAnswer($user_id, $data);
         }

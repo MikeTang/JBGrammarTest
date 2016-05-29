@@ -30,10 +30,7 @@
         </li>
         <li>
 
-          <a class="btn btn-default btn-bug" href="<?php 
-          $bugUrl = base_url(uri_string());
-          echo site_url('api/newBug/'.$bugUrl); ?>">
-            <?php echo '发现错误'; ?></a>
+
             
         </a>
         </li>

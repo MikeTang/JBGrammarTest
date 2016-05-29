@@ -21,7 +21,7 @@
 						<div class="col-xs-12"><div class="line"></div></div>
 					</div>
 					
-					<div class="study_desc">
+					<div class="study_example">
 						<h3>A. 理论</h3>
 						<p><?php echo $study_unit->Description; ?></p>
 					</div>
@@ -31,11 +31,22 @@
 						<p><?php echo nl2br($study_unit->Example); ?></p>
 					</div>
 					
-					<div class="study_explain">
+					<div class="study_example">
 						<h3>C. 解析</h3>
 						<p><?php echo $study_unit->Explanation; ?></p>
 					</div>
-					
+
+					<div class="study_example">
+						<?php 
+							$grammarContent = trim($study_unit->Others);
+							$stringOut = "<h3>D. 补充说明</h3><p>$grammarContent</p>";
+							// echo strlen($grammarContent);
+							if (strlen($grammarContent) > 0) {
+								echo $stringOut;
+							}
+						?>
+					</div>
+
 					<div class="row">
 						
 						
@@ -47,7 +58,14 @@
 					<?php if ($current_page > 1):?>
 						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page-1) );?>" class="btn back_button f_l transition"><?php echo $_SESSION['BTN_BACK']; ?></a>
 					<?php endif;?>
-						
+					
+
+
+					<a class="btn btn-default btn-bug" href="<?php 
+					$bugUrl = base_url(uri_string());
+					echo site_url('api/newBug/'.$bugUrl); ?>">
+						<?php echo '发现错误'; ?></a>
+
 					<?php if ($current_page < $total_pages):?>
 						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page+1)   );?>" class="btn btn-default next_button f_r transition" ><?php echo $_SESSION['BTN_NEXT']; ?></a>
 					<?php endif; ?>
