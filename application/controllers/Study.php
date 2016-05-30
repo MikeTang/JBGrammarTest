@@ -106,6 +106,8 @@ class Study extends CI_Controller
       $this->load->view('templates/header', $data);
       $this->load->view('templates/nav', $data);
       $this->load->view('search_result_view', $data);
+      $this->load->view('grammar_search_view', $data);
+      
       $this->load->view('templates/footer_test');
     }
 
