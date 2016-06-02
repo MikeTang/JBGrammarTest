@@ -29,7 +29,7 @@ class Dict_model extends CI_Model
         // $query = str_replace(" ", "%", $query);
         $parts = preg_split("/[\s,]+/", $stringIn);
 
-        $glue = "%' or Category like '%";
+        $glue = "%' and Category like '%";
         $matchAllKeywords = join($glue, $parts);
 
         $sql = "SELECT *
