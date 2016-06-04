@@ -28,7 +28,8 @@ class Study extends CI_Controller
         }
         //explode $study_nums string into an array
         $study_num_array = explode("-", $study_nums);
-        $study_units = $this->dict_model->getStudyUnits($study_num_array);
+        $study_units = $this->dict_model->getUnits($study_num_array);
+
         
         //page numbers
         $data['total_pages'] = count($study_units);
@@ -41,7 +42,8 @@ class Study extends CI_Controller
         //other info
         $data['study_nums'] = $study_nums;
         $data['result_id'] = $result_id;
-        $data['title'] = 'Study Unit ' . $study_units[$page-1]->No; 
+        // $data['title'] = 'Study Unit ' . $study_units[$page-1]->No; 
+        $data['title'] = 'Grammar Units' . $study_units[$page-1]->No; 
 
         //current page's study unit content
         $data['study_unit'] = $study_units[$page-1];
@@ -97,7 +99,7 @@ class Study extends CI_Controller
         $this->info_model->create_keyword($query);
       }
 
-      $result = $this->dict_model->searchStudyUnits($query);
+      $result = $this->dict_model->searchUnits($query);
 
       $data['title'] = 'Grammar Dictionary - Search';
       $data['study_units'] = $result; 

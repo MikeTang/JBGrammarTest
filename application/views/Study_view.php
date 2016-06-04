@@ -11,7 +11,8 @@
 					
 					<div class="hud row">
 						<div class="col-xs-12 col-sm-10">
-							<h2 class="study_title"><?php echo $study_unit->No; ?> <?php echo $study_unit->Name; ?></h1>
+							<h2 class="study_title"><?php echo $study_unit->No; ?> <?php echo $study_unit->Name; 
+							?></h1>
 						</div>
 
 						<div class="col-xs-12 col-sm-2">
@@ -22,29 +23,47 @@
 					</div>
 					
 					<div class="study_example">
-						<h3>A. 理论</h3>
-						<p><?php echo $study_unit->Description; ?></p>
+						<?php
+							$grammarContent = trim($study_unit->Description);
+							$stringOut = "<h3>A. 理论</h3><p>$grammarContent</p>";
+							if (strlen($grammarContent) > 0) {
+								echo nl2br($stringOut);
+							}
+						?>
+
 					</div>
 					
 					<div class="study_example">
-						<h3>B. 实例</h3>
-						<p><?php echo nl2br($study_unit->Example); ?></p>
+						<?php
+							$grammarContent = trim($study_unit->Example);
+							$stringOut = "<h3>B. 实例</h3><p>$grammarContent</p>";
+							if (strlen($grammarContent) > 0) {
+								echo nl2br($stringOut);
+							}
+						?>
 					</div>
 					
 					<div class="study_example">
-						<h3>C. 解析</h3>
-						<p><?php echo $study_unit->Explanation; ?></p>
+						<?php
+							$grammarContent = trim($study_unit->Explanation);
+							$stringOut = "<h3>C. 解析</h3><p>$grammarContent</p>";
+							if (strlen($grammarContent) > 0) {
+								echo nl2br($stringOut);
+							}
+						?>
+
 					</div>
 
 					<div class="study_example">
-						<?php 
+
+						<?php
 							$grammarContent = trim($study_unit->Others);
 							$stringOut = "<h3>D. 补充说明</h3><p>$grammarContent</p>";
-							// echo strlen($grammarContent);
 							if (strlen($grammarContent) > 0) {
-								echo $stringOut;
+								echo nl2br($stringOut);
 							}
 						?>
+
 					</div>
 
 					<div class="row">
@@ -53,6 +72,13 @@
 					</div>
 
 				</div>
+
+					<a class="btn btn-default btn-bug" href="<?php 
+						$bugUrl = base_url(uri_string());
+						echo site_url('api/newBug/'.$bugUrl); ?>">
+						<?php echo '发现错误'; ?>
+					</a>
+					<br/><br/>
 				<div class="box_bottom">
 					
 					<?php if ($current_page > 1):?>
@@ -61,10 +87,6 @@
 					
 
 
-					<a class="btn btn-default btn-bug" href="<?php 
-					$bugUrl = base_url(uri_string());
-					echo site_url('api/newBug/'.$bugUrl); ?>">
-						<?php echo '发现错误'; ?></a>
 
 					<?php if ($current_page < $total_pages):?>
 						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page+1)   );?>" class="btn btn-default next_button f_r transition" ><?php echo $_SESSION['BTN_NEXT']; ?></a>

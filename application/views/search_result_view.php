@@ -27,17 +27,17 @@
 							<div class="col-xs-12 col-sm-5 center">
 								<br><br>
 								<?php foreach ($study_units as $study_unit): ?>
-									<?php if ($study_unit->Study_Unit != $study_unit_tracker):?>
+									<?php if ($study_unit->Grammar_Units != $study_unit_tracker):?>
 										<div class="study_unit row">
 											<a class="col-xs-5" href="
 												<?php
-													$toURL = "study/0/{$study_unit->Study_Unit}/1";
+													$toURL = "study/0/{$study_unit->Grammar_Units}/1";
 													echo site_url($toURL);
 												?>
 											" 
 											target="_blank" 
 											>
-											<?php echo "Unit: {$study_unit->Study_Unit}"?></a>
+											<?php echo "Unit: {$study_unit->Grammar_Units}"?></a>
 
 											<div class="col-xs-7">
 												<?php echo $study_unit->Category; ?>
@@ -45,10 +45,10 @@
 											</div>
 											 
 										</div>
-										<?php $study_unit_tracker = $study_unit->Study_Unit;?>
+										<?php $study_unit_tracker = $study_unit->Grammar_Units;?>
 									<?php endif;?>
 									
-									<?php $study_units_string = $study_units_string . '-' . $study_unit->Study_Unit;?>
+									<?php $study_units_string = $study_units_string . '-' . $study_unit->Grammar_Units;?>
 								<?php endforeach;?>
 							</div>
 						</div>	

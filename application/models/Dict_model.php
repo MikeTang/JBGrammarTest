@@ -25,21 +25,83 @@ class Dict_model extends CI_Model
         return $query->result();
     }
 
-    function searchStudyUnits($stringIn) {
+    function getUnits($units){
+        $column = 'Grammar_Units';
+        $sql = "";
+        for ($i=0; $i < count($units); $i++) { 
+            if ($i == 0){
+               $sql = "SELECT *
+                FROM grammarDict
+                WHERE $column = '{$units[$i]}' ";
+                
+            }else{
+                $sql = $sql . "OR $column = '{$units[$i]}' ";
+            }
+        }
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+
+    function isCN($stringIn) {
+        $str=$stringIn;
+        if(!eregi("[^\x80-\xff]","$str")) {
+            echo "是";
+        }
+        else
+        {
+            echo "不是";
+        }
+    }
+
+    function searchUnits($stringIn) {
         // $query = str_replace(" ", "%", $query);
         $parts = preg_split("/[\s,]+/", $stringIn);
 
-        $glue = "%' and Category like '%";
-        $matchAllKeywords = join($glue, $parts);
+        $enParts = [];
+        $cnParts = [];
+
+        foreach ($parts as $v) {
+            // if( isCN($v) ) {
+            // if(!preg_match("[^\x80-\xff]","$v")) {
+            if (preg_match("/[\x7f-\xff]/", $v)) {
+
+                array_push($cnParts, $v);
+            } else {
+                array_push($enParts, $v);
+            }
+        }
+
+        // print_r($enParts);
+        // print_r($cnParts);
+
+        $enGlue = "%' and i.Keywords like '%";
+        $enMatchAllKeywords = join($enGlue, $enParts);
+
+        $cnGlue = "%' and Name like '%";
+        $cnMatchAllKeywords = join($cnGlue, $cnParts);
+
 
         $sql = "SELECT *
-            FROM grammarDict
-            WHERE Category like '%$matchAllKeywords%'
-            ";
+                FROM grammarDict d 
+                Inner Join grammarIndex i
+                    On i.Keywords like '%$enMatchAllKeywords%'
+                Inner Join grammarKeyPoints gkp 
+                    on gkp.Grammar_Point_ like '%$cnMatchAllKeywords%'
+                group by d.no
+
+                having LOCATE(d.no, i.Units_index) > 0
+                    and LOCATE(d.no, gkp.related_units) > 0
+
+                ";
+
+
         // echo $sql;
 
         $results = $this->db->query($sql)->result();
         return $results;
     }
+
+
 
 }?>
