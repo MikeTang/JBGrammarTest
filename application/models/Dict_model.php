@@ -46,70 +46,156 @@ class Dict_model extends CI_Model
 
 
     function isCN($stringIn) {
-        $str=$stringIn;
-        if(!eregi("[^\x80-\xff]","$str")) {
-            echo "是";
+        $isCN = false;
+        // if(!eregi("[^\x80-\xff]","$str")) {
+        if (preg_match("/[\x7f-\xff]/", $stringIn)) {
+            $isCN = true;
         }
-        else
-        {
-            echo "不是";
-        }
+        return $isCN;
     }
 
-
-    function searchUnits($stringIn) {
-
+    function searchKeywordInTableWithColumnIOAndLikeString($stringIn, $table, $columnIn, $columnOut, $likeString) {
+        // $column = 'Units_index';
         $parts = preg_split("/[,，]+/", trim($stringIn));
-
-        // print_r($parts);
-
 
         $enGlue = "%' or i.Keywords like '%";
         $enMatchAllKeywords = join($enGlue, $parts);
 
-        $sqlEn = "select i.Units_index from grammarIndex i
-                where i.keywords like '%$enMatchAllKeywords%'";
-        $results = $this->db->query($sqlEn)->result();
+        $sql = "select $columnOut from $table
+                    where $columnIn like '%$likeString%'";
+
+        echo $sql;
+
+        $results = $this->db->query($sql)->result();
+
 
         $spottedUnits = [];
         if (count(array_filter($results)) > 0) {
-            if (count(array_filter($parts))> 1) {
-                $spottedUnits = $this->uniqueInterectResult($results, 'Units_index');
+            $spottedUnits = $this->uniqueUnionResult($results, $columnOut);
+        }
+
+        // print_r( $spottedUnits );
+
+        return $spottedUnits;
+    }
+
+
+    function searchUnits($stringIn) {
+        // self->isCN($stringIn);
+
+        $parts = preg_split("/[,，]+/", trim($stringIn));
+
+// a,an,冦词
+        $enParts = [];
+        $cnParts = [];
+
+        foreach ($parts as $v) {
+            if (preg_match("/[\x7f-\xff]/", $v)) {
+                array_push($cnParts, trim($v));
             } else {
-                $spottedUnits = $this->uniqueUnionResult($results, 'Units_index');
+                array_push($enParts, trim($v));
             }
         }
 
-        // if ( count(array_filter($enParts)) > 0) {}
-        //     $spottedUnits = array_merge($spotEnUnits, $spotCnUnits);
-        //     echo "intersect";
-        // } else {
-        //     $spottedUnits = array_merge($spotEnUnits, $spotCnUnits);
-        //     echo "not all";
-        // }
-        // echo $sqlEn;
-        print_r( $spottedUnits );
+
+echo "en";
+        print_r($enParts);
+echo "cn";
+        print_r($cnParts);
 
 
-        $spotUnitsString = join(',', array_unique($spottedUnits));
+// en
+        $enGlue = "%' or Keywords like '%";
+        $enMatchAllKeywords = join($enGlue, $enParts);
 
+        // print_r($enMatchAllKeywords);
 
-        $spotUnitsString = str_replace(",,", ",", $spotUnitsString);
+        $spottedEnUnitsArrays = [];
 
-        $sql = "select * from grammarDict where No in ($spotUnitsString)";
-        echo $sql;
-
-
-        $results = [];
-        if ($spotUnitsString) {
-            $results = $this->db->query($sql)->result();
+        foreach ($enParts as $enKeyword) {
+            $spottedEnUnits = $this->searchKeywordInTableWithColumnIOAndLikeString(
+                trim($enKeyword),
+                'grammarIndex',
+                'keywords',
+                'Units_index',
+                $enMatchAllKeywords
+            );
+            array_push($spottedEnUnitsArrays, $spottedEnUnits);
         }
 
-        return $results;
+        // merge CN units;
+        $finalEnUnits = [];
+        if (count($spottedEnUnitsArrays) > 0 ) {
+            $finalEnUnits = $spottedEnUnitsArrays[0];
 
+            foreach ($spottedEnUnitsArrays as $units) {
+                array_merge($finalEnUnits, $units);
+            }
+        }
+
+
+
+// cn
+
+
+
+        $cnGlue = "%' or Grammar_Point_ like '%";
+        $cnMatchAllKeywords = join($cnGlue, $cnParts);
+
+
+        $spottedCnUnitsArrays = [];
+
+        foreach ($cnParts as $cnKeyword) {
+            $spottedCnUnits = $this->searchKeywordInTableWithColumnIOAndLikeString(
+                trim($cnKeyword),
+                'grammarKeyPoints',
+                'Grammar_Point_',
+                'related_units',
+                $cnMatchAllKeywords
+            );
+            array_push($spottedCnUnitsArrays, $spottedCnUnits);
+        }
+
+        $finalCnUnits = [];
+
+        // merge CN units;
+        if (count($spottedCnUnitsArrays) > 0 ) {
+            $finalCnUnits = $spottedCnUnitsArrays[0];
+
+            foreach ($spottedCnUnitsArrays as $units) {
+                array_merge($finalCnUnits, $units);
+            }
+        }
+
+
+
+        // intersection 
+        $finalUnits = [];
+
+        $enCount = count(array_filter($finalEnUnits));
+        $cnCount = count(array_filter($finalCnUnits));
+
+        if ($enCount > 0 and $cnCount > 0) {
+            $finalUnits = array_intersect($finalEnUnits, $finalCnUnits);
+        } else {
+            $finalUnits = array_merge($finalEnUnits, $finalCnUnits);
+        }
+
+
+        $finalGrammars = $this->getGrammarFromUnits($finalUnits);
+        return $finalGrammars;
+
+
+
+        // self->uniqueIntersectResult($spottedEnUnitsArrays);
+
+
+        // $cnGlue = "%' or gkp.Grammar_Point_ like '%";
+        // $cnMatchAllKeywords = join($cnGlue, $cnParts);
 
 
     }
+      
     function searchUnitsBilingual($stringIn) {
         // $query = str_replace(" ", "%", $query);
         $parts = preg_split("/ /", $stringIn);
@@ -129,8 +215,6 @@ class Dict_model extends CI_Model
 
         // print_r($enParts);
         // print_r($cnParts);
-
-
 
         $enGlue = "%' or i.Keywords like '%";
         $enMatchAllKeywords = join($enGlue, $enParts);
@@ -221,13 +305,9 @@ class Dict_model extends CI_Model
         }
         // print_r( $spottedUnits );
 
-
-
-
         $spotUnitsString = join(',', array_unique($spottedUnits));
-
-
         $spotUnitsString = str_replace(",,", ",", $spotUnitsString);
+
 
         $sql = "select * from grammarDict where No in ($spotUnitsString)";
         echo $sql;
@@ -243,38 +323,56 @@ class Dict_model extends CI_Model
     }
 
 
-    function uniqueInterectResult($inResults, $column) {
-        $displayUnits = preg_split('/[;,]+/', $inResults[0]->$column);
+    function uniqueIntersectResult($inResults, $column) {
+        $results = preg_split('/[;,，]+/', $inResults[0]->$column);
 
-        print_r($displayUnits);
         foreach ($inResults as $result) {
-            $units = preg_split('/[;,]+/', $result->$column);
+            $units = preg_split('/[;,，]+/', $result->$column);
             if( count($units) > 0) {
-                $displayUnits = array_intersect($displayUnits, $units );
+                print_r($units);
+                $results = array_intersect($results, $units);
             }
         }
 
-        $displayUnits = array_unique($displayUnits);
 
-        return $displayUnits;
+        $results = array_unique($results);
+        $results = array_filter($results);
+
+        return $results;
     }
+
 
     function uniqueUnionResult($inResults, $column) {
-        $displayUnits = preg_split('/[;,，]+/', $inResults[0]->$column);
-
-        print_r($displayUnits);
+        $outResults = [];
         foreach ($inResults as $result) {
-            $units = preg_split('/[;,]+/', $result->$column);
-            if( count($units) > 0) {
-                $displayUnits = array_merge($displayUnits, $units );
-            }
+            $results = preg_split('/[;,，]+/', $result->$column);
+            $outResults = array_merge($outResults, $results);
         }
 
-        $displayUnits = array_unique($displayUnits);
+        $outResults = array_unique($outResults);
+        $outResults = array_filter($outResults);
 
-        return $displayUnits;
+        return $outResults;
     }
 
+    // finally get the result
+    function getGrammarFromUnits($unitsIn) {
+        $safeUnits = array_filter($unitsIn);
+        print_r($safeUnits);
+        $unitString = join(',', $safeUnits);
+
+
+        $sql = "select * from grammarDict where No in ($unitString)";
+        echo $sql;
+
+        $results = [];
+
+        if (count($safeUnits) > 0) {
+            $results = $this->db->query($sql)->result();
+        }
+
+        return $results;
+    }
 
 
 
