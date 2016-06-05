@@ -8,8 +8,6 @@ class Dict_model extends CI_Model
       parent::__construct();
     }
 
-
-
     function getStudyUnits($study_units){
 
         $sql = "";
@@ -98,11 +96,13 @@ class Dict_model extends CI_Model
         }
 
 
+/*
 echo "en";
         print_r($enParts);
 echo "cn";
         print_r($cnParts);
 
+*/
 
 // en
         $enGlue = "%' or Keywords like '%";
@@ -133,15 +133,9 @@ echo "cn";
             }
         }
 
-
-
 // cn
-
-
-
-        $cnGlue = "%' or Grammar_Point_ like '%";
+        $cnGlue = "%' or Grammar_Point like '%";
         $cnMatchAllKeywords = join($cnGlue, $cnParts);
-
 
         $spottedCnUnitsArrays = [];
 
@@ -149,7 +143,7 @@ echo "cn";
             $spottedCnUnits = $this->searchKeywordInTableWithColumnIOAndLikeString(
                 trim($cnKeyword),
                 'grammarKeyPoints',
-                'Grammar_Point_',
+                'grammar_Point',
                 'related_units',
                 $cnMatchAllKeywords
             );
@@ -185,143 +179,8 @@ echo "cn";
         $finalGrammars = $this->getGrammarFromUnits($finalUnits);
         return $finalGrammars;
 
-
-
-        // self->uniqueIntersectResult($spottedEnUnitsArrays);
-
-
-        // $cnGlue = "%' or gkp.Grammar_Point_ like '%";
-        // $cnMatchAllKeywords = join($cnGlue, $cnParts);
-
-
     }
       
-    function searchUnitsBilingual($stringIn) {
-        // $query = str_replace(" ", "%", $query);
-        $parts = preg_split("/ /", $stringIn);
-
-        $enParts = [];
-        $cnParts = [];
-
-        foreach ($parts as $v) {
-            // if( isCN($v) ) {
-            // if(!preg_match("[^\x80-\xff]","$v")) {
-            if (preg_match("/[\x7f-\xff]/", $v)) {
-                array_push($cnParts, $v);
-            } else {
-                array_push($enParts, $v);
-            }
-        }
-
-        // print_r($enParts);
-        // print_r($cnParts);
-
-        $enGlue = "%' or i.Keywords like '%";
-        $enMatchAllKeywords = join($enGlue, $enParts);
-
-        $cnGlue = "%' or gkp.Grammar_Point_ like '%";
-        $cnMatchAllKeywords = join($cnGlue, $cnParts);
-
-
-        // dynamic filter
-
-        // $enSnippet = '';
-        // $enHaving = '';
-        // $cnSnippet = '';
-        // $cnHaving = '';
-
-        // $havingParts = [];
-        // $havingSnippet = '';
-
-
-        // if ( count($enParts) > 0 ) {
-        //     $enSnippet = "Inner Join grammarIndex i
-        //                 On i.Keywords like '%$enMatchAllKeywords%'";
-
-        //     $enHaving = "LOCATE(d.no, i.Units_index) > 0";
-        //     array_push($havingParts, $enHaving);
-        // }
-
-        // if ( count($cnParts) > 0 ) {
-        //     $cnSnippet = "Inner Join grammarKeyPoints gkp
-        //                 on gkp.Grammar_Point_ like '%$cnMatchAllKeywords%'";
-
-        //     $cnHaving = "LOCATE(d.no, gkp.related_units) > 0";
-        //     array_push($havingParts, $cnHaving);
-        // }
-
-        // if ( count($cnParts) + count($enParts) > 0 ) {
-        //     $havingSnippet = "having ".join($havingParts, ' and ');
-        // }
-
-        // $sql = "SELECT *
-        //         FROM grammarDict d 
-        //             $enSnippet
-        //             $cnSnippet
-
-        //         group by d.no
-
-        //         $havingSnippet
-
-        //         ";
-
-
-        // echo $sql;
-
-        // echo count(array_filter($enParts));
-        // echo count(array_filter($cnParts));
-
-        $spotUnits = [];
-        $spotEnUnits = [];
-        $spotCnUnits = [];
-
-        if ( count(array_filter($enParts)) > 0 ) {
-            $sqlEn = "select i.Units_index from grammarIndex i
-                where i.keywords like '%$enMatchAllKeywords%'";
-// echo $sqlEn;
-            $enResults = $this->db->query($sqlEn)->result();
-
-            $spotEnUnits = $this->uniqueResult($enResults, 'Units_index');
-
-            // echo "en==";
-        }
-
-        if ( count(array_filter($cnParts)) > 0 ) {
-            $sqlCn = "select gkp.Related_Units from grammarKeyPoints gkp 
-                where gkp.Grammar_Point_ like '%$cnMatchAllKeywords%'";
-
-            $cnResults = $this->db->query($sqlCn)->result();
-
-            $spotCnUnits = $this->uniqueResult($cnResults, 'Related_Units');
-            // echo "cn===";
-        }
-
-        if ( count(array_filter($enParts)) > 0 && count(array_filter($cnParts)) > 0) {
-            $spottedUnits = array_merge($spotEnUnits, $spotCnUnits);
-            echo "intersect";
-        } else {
-            $spottedUnits = array_merge($spotEnUnits, $spotCnUnits);
-            echo "not all";
-        }
-        // print_r( $spottedUnits );
-
-        $spotUnitsString = join(',', array_unique($spottedUnits));
-        $spotUnitsString = str_replace(",,", ",", $spotUnitsString);
-
-
-        $sql = "select * from grammarDict where No in ($spotUnitsString)";
-        echo $sql;
-
-
-        $results = [];
-        if ($spotUnitsString) {
-            $results = $this->db->query($sql)->result();
-        }
-
-        return $results;
-
-    }
-
 
     function uniqueIntersectResult($inResults, $column) {
         $results = preg_split('/[;,，]+/', $inResults[0]->$column);

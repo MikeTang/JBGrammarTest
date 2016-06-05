@@ -17,9 +17,9 @@ class Study extends CI_Controller
       $this->load->model('info_model');
     }
 
-    public function index($result_id, $study_nums, $page){
-
-
+    public function index($result_id, $study_nums, $page) {
+        // set dictionary as home page
+        redirect('study/search');
 
         $_SESSION["current_page"] = current_url();
         //check if locale is set
@@ -58,6 +58,7 @@ class Study extends CI_Controller
     public function search()
     {
 
+/* 
         //check if user is logged in
         if (isset($_SESSION["user_id"])){
              $user_id = $_SESSION["user_id"];
@@ -65,6 +66,7 @@ class Study extends CI_Controller
           // echo "<script type=\"text/javascript\">alert('要使用语法字典请先注册登录');</script>";
           redirect('Signup/index');
         }
+        */
 
       $_SESSION["current_page"] = current_url();
       //check if locale is set
@@ -79,6 +81,8 @@ class Study extends CI_Controller
       $this->load->view('grammar_search_view', $data);
       $this->load->view('templates/footer_test');
     }
+
+
     public function search_result()
     {
 
