@@ -18,8 +18,7 @@ class Study extends CI_Controller
     }
 
     public function index($result_id, $study_nums, $page) {
-        // set dictionary as home page
-        redirect('study/search');
+
 
         $_SESSION["current_page"] = current_url();
         //check if locale is set
