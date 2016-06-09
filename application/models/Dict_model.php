@@ -1,11 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+
 class Dict_model extends CI_Model
 {
     function __construct()
     {
       // Call the Model constructor
       parent::__construct();
+      $this->load->model('BH');
+
     }
 
     function getStudyUnits($study_units){
@@ -42,17 +46,12 @@ class Dict_model extends CI_Model
         return $query->result();
     }
 
-
-
-
-
-
     // a,an,冦词
     function searchUnits($stringIn) {
+        $stringIn = str_replace("'","\\'", $stringIn);
         $finalUnits = [];
 
         $allUnitsArrays = [];
-
 
         $parts = preg_split("/[,，]+/", trim($stringIn));
 
@@ -61,54 +60,39 @@ class Dict_model extends CI_Model
         if ($partsCount > 0) {
             foreach ($parts as $keyword) {
                 $spottedUnits = $this->atomSearch($keyword);
-                // print_r($spottedCnUnits);
+                // $this->BH->echor($spottedUnits);
                 array_push($allUnitsArrays, $spottedUnits);
             }
         }
 
         $allUnitsArrays = array_filter($allUnitsArrays);
 
-        $finalUnits = $this->intersectAllSubArrays($allUnitsArrays);
+        $finalUnits = $this->BH->intersectOfArrays($allUnitsArrays);
+        
+    //$finalUnits = call_user_func_array("array_intersect", $allUnitsArrays);
+//        $values = call_user_func_array("array_intersect", $allUnitsArrays);
 
-        $finalGrammars = $this->getGrammarFromUnits($finalUnits);
+    // $finalUnits = $this->getIntersect($allUnitsArrays);
+//  $finalUnits = call_user_func_array("my_array_intersect", $allUnitsArrays);
+
+        // $this->BH->echor($finalUnits);
+
+        $finalGrammars = $this->BH->grammarsInUnits($finalUnits);
         return $finalGrammars;
     }
 
     // finally get the result
-    function getGrammarFromUnits($unitsIn) {
-        $safeUnits = array_filter($unitsIn);
-        $unitString = join(',', $safeUnits);
-
-
-        $sql = "select * from grammarDict where No in ($unitString)";
-        // echo $sql;
-
-        $results = [];
-
-        if (count($safeUnits) > 0) {
-            $results = $this->db->query($sql)->result();
-        }
-
-        return $results;
-    }
-
 
     // lib
 
 
-    function isCN($stringIn) {
-        $isCN = false;
-        if (preg_match("/[\x7f-\xff]/", $stringIn)) {
-            $isCN = true;
-        }
-        return $isCN;
-    }
+
 
     function atomSearch($stringIn) {
         $units = [];
         $keyword = trim($stringIn);
 
-        if ($this->isCN($keyword)) {
+        if ($this->BH->isCN($keyword)) {
             $units = $this->selectColumnOutFromTableWhereColumnInLikeStringIn(
                 'related_units',
                 'grammarKeyPoints',
@@ -137,11 +121,17 @@ class Dict_model extends CI_Model
     {
         $spottedUnits = [];
 
-        $stringIn = trim($stringIn);
-        $sql = "select $columnOut from $table
-                    where $columnIn like '%$stringIn%'";
+// $con = new mysqli("localhost", "root", "root", "yufa");
 
-        // echo $sql;
+        // $stringIn = mysql_real_escape_string(trim($stringIn));
+        // $stringIn = htmlspecialchars($stringIn);
+        // $stringIn = str_replace("'", "\''", $stringIn);
+
+        $sql = "select $columnOut from $table where $columnIn like ".'"%'.$stringIn.'%"';
+        // $sql = "select $columnOut from $table where $columnIn like \"%$stringIn%\"";
+
+        // echo $sql."<br/>";
+        //$sql = mysql_real_escape_string($sql);
 
         $results = $this->db->query($sql)->result();
         $results = array_filter($results);
@@ -154,20 +144,7 @@ class Dict_model extends CI_Model
     }
 
 
-    function intersectAllSubArrays($arraysIn) {
-        $outResults = [];
-        $nonEmptyArray = array_filter($arraysIn);
-        if (count($nonEmptyArray) > 0) {
 
-            $outResults = $nonEmptyArray[0];
-
-            foreach ($nonEmptyArray as $arrayIn) {
-                $outResults = array_intersect($outResults, $arrayIn);
-            }
-        }
-
-        return $outResults;
-    }
 
 
     function uniqueUnionResult($inResults, $column) {
@@ -185,8 +162,47 @@ class Dict_model extends CI_Model
         return $outResults;
     }
 
+    function getIntersect($arrays){
+        $totalArrays = count($arrays);
+        if($totalArrays >= 2){
+                $arrayTmp =  $arrays[0];
+                for ($i = 1; $i < $totalArrays; $i++) {
+                    //$arrayTmp = array_intersect($arrayTmp, $arrays[$i]);
+                    $arrayTmp = $this->my_array_intersect($arrayTmp, $arrays[$i]);
+                }
+        $shipArray = array_filter($arrayTmp);
+                return $shipArray;
+        }else{
+            return $arrays[0];
+        }
+    }
 
 
+function my_array_intersect($arr1,$arr2)
+{
+    for($i=0;$i<sizeof($arr1);$i++)
+    {
+        $temp[]=$arr1[$i];
+    }
+     
+    for($i=0;$i<sizeof($arr1);$i++)
+    {
+        $temp[]=$arr2[$i];
+    }
+     
+    sort($temp);
+    $get=array();
+     
+    for($i=0;$i<sizeof($temp);$i++)
+    {
+        if($temp[$i]==$temp[$i+1])
+         $get[]=$temp[$i];
+    }
+     
+    $result = array_filter($get);
+    //return $result;
+    return $get;
+}
 
 
 }?>

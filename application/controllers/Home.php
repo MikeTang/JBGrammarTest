@@ -19,7 +19,7 @@ class Home extends CI_Controller
      public function index(){
 
         // set dictionary as home page
-        redirect('study/search');  
+       // redirect('study/search');  
           
           $_SESSION["current_page"] = current_url();
 

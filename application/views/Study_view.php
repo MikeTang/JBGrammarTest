@@ -23,17 +23,28 @@
 					</div>
 					
 					<div class="study_example">
+					<p>
 						<?php
-							$grammarContent = trim($study_unit->Description);
-							$stringOut = "<h3>A. 理论</h3><p>$grammarContent</p>";
-							if (strlen($grammarContent) > 0) {
-								echo nl2br($stringOut);
-							}
+						        $cards = [$study_unit->Description,
+              $study_unit->Example,
+              $study_unit->Explanation,
+              $study_unit->Others,
+        ];
+        $displayCard = nl2br(join("<br/>", $cards));
+		echo $displayCard;
+							// $grammarContent = trim($study_unit->Description);
+							// $stringOut = "<h3>A. 理论</h3><p>$grammarContent</p>";
+							// if (strlen($grammarContent) > 0) {
+							// 	echo nl2br($stringOut);
+							// }
 						?>
+					</p>
 
 					</div>
+					<div class="col-xs-12"><div class="line"></div></div>
+
 					
-					<div class="study_example">
+<!-- 					<div class="study_example">
 						<?php
 							$grammarContent = trim($study_unit->Example);
 							$stringOut = "<h3>B. 实例</h3><p>$grammarContent</p>";
@@ -64,7 +75,7 @@
 							}
 						?>
 
-					</div>
+					</div> -->
 
 					<div class="row">
 						

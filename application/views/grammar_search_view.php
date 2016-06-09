@@ -1,4 +1,8 @@
+
 <div class="content">
+<?php
+echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
+?>
 	<div class="row mt40">
 		<div class="col-xs-12">
 			<div class="box">

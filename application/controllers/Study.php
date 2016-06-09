@@ -29,6 +29,7 @@ class Study extends CI_Controller
         $study_num_array = explode("-", $study_nums);
         $study_units = $this->dict_model->getUnits($study_num_array);
 
+
         
         //page numbers
         $data['total_pages'] = count($study_units);
@@ -92,8 +93,6 @@ class Study extends CI_Controller
          redirect("lang/set/cn");     
       }
 
-
-
       $query = $this->input->get('query');
 
       if ($query == ''){
@@ -103,15 +102,19 @@ class Study extends CI_Controller
       }
 
       $result = $this->dict_model->searchUnits($query);
+      // echo $query;
+
+
+
 
       $data['title'] = 'Grammar Dictionary - Search';
-      $data['study_units'] = $result; 
+      $data['study_units'] = $result;
       $data['query'] = $query;
 
       $this->load->view('templates/header', $data);
       $this->load->view('templates/nav', $data);
       $this->load->view('search_result_view', $data);
-      $this->load->view('grammar_search_view', $data);
+      // $this->load->view('grammar_search_view', $data);
       
       $this->load->view('templates/footer_test');
     }
