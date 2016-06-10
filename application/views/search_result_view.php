@@ -28,7 +28,8 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 					<?php $study_units_string = '';?>
 					<?php $study_unit_tracker = 0;?>
 
-					<?php if ($study_units != null ) :?>
+					<?php if ($study_units != null ) :
+					?>
 						
 
 
@@ -40,7 +41,10 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 								<br><br>
 
 
-								<?php foreach ($study_units as $study_unit): ?>
+								<?php 
+					echo count($study_units)." results <br/><br/>";
+
+								foreach ($study_units as $study_unit): ?>
 									<?php if ($study_unit->Grammar_Units != $study_unit_tracker):?>
 										<!-- <div class="study_unit row"> -->
 										<div class="h4">
@@ -95,7 +99,7 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 
 				<div class="box_bottom">
 					
-					<a href="<?php echo site_url('study/0/' . $study_units_string . '/1'); ?>" type="submit" class="btn btn-default next_button f_r transition complete_btn" name="submit"><?php echo $_SESSION['BTN_STUDYALL']; ?></a>
+					<!-- // <a href="<?php echo site_url('study/0/' . $study_units_string . '/1'); ?>" type="submit" class="btn btn-default next_button f_r transition complete_btn" name="submit"><?php echo $_SESSION['BTN_STUDYALL']; ?></a> -->
 				</div>
 
 			</div>

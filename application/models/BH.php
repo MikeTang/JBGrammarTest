@@ -24,7 +24,55 @@ class BH extends CI_Model
         return $results;
     }
 
+
+    function selectColumnOutFromTableWhereColumnInLikeStringIn(
+        $columnOut,
+        $table, 
+        $columnIn, 
+        $stringIn 
+        ) 
+    {
+        $spottedUnits = [];
+        
+
+        $this->db->select($columnOut);
+        $this->db->from($table);
+        $this->db->like($columnIn, $stringIn, 'both'); 
+
+        // $sql = "select $columnOut from $table where $columnIn like ".'"%'.$stringIn.'%"';
+        // $sql = "select $columnOut from $table where $columnIn like \"%$stringIn%\"";
+
+        // echo $sql."<br/>";
+        //$sql = mysql_real_escape_string($sql);
+
+        $query = $this->db->get();
+        $results = $query->result();
+
+        if (count($results) > 0) {
+            $spottedUnits = $this->uniqueUnionResult($results, $columnOut);
+        }
+
+        return $spottedUnits;
+    }
+
+
 // lab
+
+
+    function uniqueUnionResult($inResults, $column) {
+        $outResults = [];
+
+        foreach ($inResults as $result) {
+            $results = preg_split('/[;,，]+/', trim($result->$column));
+            $results = array_filter($results);
+            $outResults = array_merge($outResults, $results);
+        }
+
+        $outResults = array_unique($outResults);
+        $outResults = array_filter($outResults);
+
+        return $outResults;
+    }
 
 
     function intersectOfArrays($arraysIn) {

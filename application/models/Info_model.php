@@ -47,6 +47,7 @@ class Info_model extends CI_Model
      }
 
      function create_keyword($stringIn){
+          $stringIn = addslashes($stringIn);
           $table = 'keywords';
           $sql = "select id, content, count from {$table} where content = '{$stringIn}'";
           $results = $this->db->query($sql)->result_array();
