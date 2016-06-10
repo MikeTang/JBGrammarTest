@@ -52,12 +52,11 @@ class Dict_model extends CI_Model
         // if (!get_magic_quotes_gpc()){
             // $stringIn=addslashes($stringIn);
         // }
-        // echo $stringIn;
         $finalUnits = [];
 
         $allUnitsArrays = [];
 
-        $parts = preg_split("/[,，]+/", trim($stringIn));
+        $parts = preg_split("/[,，]+/", $stringIn);
 
         $partsCount = count(array_filter($parts));
 
@@ -72,28 +71,17 @@ class Dict_model extends CI_Model
         $allUnitsArrays = array_filter($allUnitsArrays);
 
         $finalUnits = $this->BH->intersectOfArrays($allUnitsArrays);
-        
-    //$finalUnits = call_user_func_array("array_intersect", $allUnitsArrays);
-//        $values = call_user_func_array("array_intersect", $allUnitsArrays);
-
-    // $finalUnits = $this->getIntersect($allUnitsArrays);
-//  $finalUnits = call_user_func_array("my_array_intersect", $allUnitsArrays);
-
-        // $this->BH->echor($finalUnits);
 
         $finalGrammars = $this->BH->grammarsInUnits($finalUnits);
         return $finalGrammars;
     }
 
-    // finally get the result
 
     // lib
 
-
-
     function atomSearch($stringIn) {
+        $keyword = $stringIn;
         $units = [];
-        $keyword = trim($stringIn);
 
         if ($this->BH->isCN($keyword)) {
             $units = $this->BH->selectColumnOutFromTableWhereColumnInLikeStringIn(
@@ -113,52 +101,4 @@ class Dict_model extends CI_Model
 
         return $units;
     }
-
-
-
-
-
-//     function getIntersect($arrays){
-//         $totalArrays = count($arrays);
-//         if($totalArrays >= 2){
-//                 $arrayTmp =  $arrays[0];
-//                 for ($i = 1; $i < $totalArrays; $i++) {
-//                     //$arrayTmp = array_intersect($arrayTmp, $arrays[$i]);
-//                     $arrayTmp = $this->my_array_intersect($arrayTmp, $arrays[$i]);
-//                 }
-//         $shipArray = array_filter($arrayTmp);
-//                 return $shipArray;
-//         }else{
-//             return $arrays[0];
-//         }
-//     }
-
-
-// function my_array_intersect($arr1,$arr2)
-// {
-//     for($i=0;$i<sizeof($arr1);$i++)
-//     {
-//         $temp[]=$arr1[$i];
-//     }
-     
-//     for($i=0;$i<sizeof($arr1);$i++)
-//     {
-//         $temp[]=$arr2[$i];
-//     }
-     
-//     sort($temp);
-//     $get=array();
-     
-//     for($i=0;$i<sizeof($temp);$i++)
-//     {
-//         if($temp[$i]==$temp[$i+1])
-//          $get[]=$temp[$i];
-//     }
-     
-//     $result = array_filter($get);
-//     //return $result;
-//     return $get;
-// }
-
-
 }?>

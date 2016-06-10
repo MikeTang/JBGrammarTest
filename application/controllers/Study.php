@@ -102,7 +102,7 @@ class Study extends CI_Controller
       }
 
       $result = $this->dict_model->searchUnits($query);
-      // echo $query;
+      echo $query;
 
 
 

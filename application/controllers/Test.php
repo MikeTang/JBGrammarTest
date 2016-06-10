@@ -256,7 +256,7 @@ class Test extends CI_Controller
         //create the array to store study unit data
         $unitArray = [];
         $unitArray["unit"] = $question->study_unit;
-        $unitArray["category"] = $question->category;
+        $unitArray["category"] = $question->category_;
 
         //get user's previous submission
         $lastSubmission = $this->grammar_model->getInPorgressSubmission($user_id);

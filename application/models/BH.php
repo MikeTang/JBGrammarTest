@@ -9,8 +9,8 @@ class BH extends CI_Model
     {
         $results = [];
 
-        $safeUnits = array_filter($unitsIn);
-        if (count($safeUnits) > 0) {
+        if ($unitsIn != null) {
+            $safeUnits = array_filter($unitsIn);
 
             // $sql = "select * from grammarDict where No in ($unitString)";
             $this->db->select('*');
@@ -58,13 +58,15 @@ class BH extends CI_Model
 
 // lab
 
-
     function uniqueUnionResult($inResults, $column) {
         $outResults = [];
 
         foreach ($inResults as $result) {
-            $results = preg_split('/[;,，]+/', trim($result->$column));
-            $results = array_filter($results);
+            // $results = preg_split('/[;,，]+/', trim($result->$column));
+            $results = preg_split('/[;,，]+/', $result->$column);
+            if ($results != null) {
+                $results = array_filter($results);
+            }
             $outResults = array_merge($outResults, $results);
         }
 
@@ -78,18 +80,12 @@ class BH extends CI_Model
     function intersectOfArrays($arraysIn) {
         $outResults = [];
 
-        $nonEmptyArrays = array_filter($arraysIn);
-
-        $inCount = count($nonEmptyArrays);
-
-        // print_r( $outResults);
-        if ( $inCount > 0) {
-            $outResults = $nonEmptyArrays[0];
-                if ( $inCount > 1) {
+        if ( $arraysIn != null) {
+            $outResults = array_pop($arraysIn);
+            $nonEmptyArrays = array_filter($arraysIn);
+            if ( count($nonEmptyArrays) > 1) {
                 foreach ($nonEmptyArrays as $arrayIn) {
-                //for ($i = 1; $i < $inCount; $i++) {
                     $outResults = array_intersect($arrayIn, $outResults);
-                    // $outResults = array_intersect($nonEmptyArrays[$i], $outResults);
                 }
             }
         }
