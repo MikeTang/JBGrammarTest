@@ -460,7 +460,11 @@ body{
     float:right;
     color: #999;
 }
+.searchResult_icon{
+    width: 5%;
+    align: left;
 
+}
 
 /* ==========================================================================
    Media Queries

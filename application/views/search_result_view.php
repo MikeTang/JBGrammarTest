@@ -70,10 +70,19 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 					              $study_unit->Explanation,
 					              $study_unit->Others,
 					        ];
-					        $displayCard = nl2br(join("<br/>", $cards));
-							echo $displayCard;
+					        $asset_url = asset_url();
+					        for ($i = 1; $i <=4; $i++) {
+    							$icon = "<br/><br/><img class='searchResult_icon' src=$asset_url/img/grammarPoints/$i.pic.jpg><br/>";
+
+    							if ($cards[$i-1] != null) {
+    								echo $icon;
+    								echo $cards[$i-1];
+    							}
+					        }
+					        // $displayCard = nl2br(join("<br/>", $cards));
+							// echo $displayCard;
 						?>
-					</p><br/>
+					</p><br/><br/>
 
 				</div>
 
