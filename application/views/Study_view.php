@@ -24,20 +24,40 @@
 					
 					<div class="study_example">
 					<p>
+
 						<?php
-						        $cards = [$study_unit->Description,
-              $study_unit->Example,
-              $study_unit->Explanation,
-              $study_unit->Others,
-        ];
-        $displayCard = nl2br(join("<br/>", $cards));
-		echo $displayCard;
-							// $grammarContent = trim($study_unit->Description);
-							// $stringOut = "<h3>A. 理论</h3><p>$grammarContent</p>";
-							// if (strlen($grammarContent) > 0) {
-							// 	echo nl2br($stringOut);
-							// }
+						        $cards = [
+						          $study_unit->Description,
+					              $study_unit->Example,
+					              $study_unit->Explanation,
+					              $study_unit->Others,
+					        ];
+
+					        $mobileIconCSS = 'class= "grammar_icon_mobile"';
+					        $computerIconCSS = 'class= "grammar_icon_computer"';
+
+					        $iconCSS = "";
+
+					        $this -> load -> library('Mobile-Detect/Mobile_Detect');
+					        $detect = new Mobile_Detect();
+					        if ($detect->isMobile() || $detect->isTablet() || $detect->isAndroidOS()) {
+					        	$iconCSS = $mobileIconCSS;
+							} else {
+								$iconCSS = $computerIconCSS;
+							}
+
+					        $asset_url = asset_url();
+
+							for ($i = 1; $i <=4; $i++) {
+								if ($cards[$i-1] != null) {
+									$imageID = $i + 37;
+									$icon = "<br/><br/><img $iconCSS src=$asset_url/img/grammarPoints/$imageID.pic.jpg><br/>";
+									echo $icon;
+									echo nl2br($cards[$i-1]);
+								}
+							}
 						?>
+
 					</p>
 
 					</div>

@@ -70,17 +70,30 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 					              $study_unit->Explanation,
 					              $study_unit->Others,
 					        ];
-					        $asset_url = asset_url();
-					        for ($i = 1; $i <=4; $i++) {
-    							$icon = "<br/><br/><img class='searchResult_icon' src=$asset_url/img/grammarPoints/$i.pic.jpg><br/>";
 
-    							if ($cards[$i-1] != null) {
-    								echo $icon;
-    								echo $cards[$i-1];
-    							}
-					        }
-					        // $displayCard = nl2br(join("<br/>", $cards));
-							// echo $displayCard;
+					        $mobileIconCSS = 'class= "grammar_icon_mobile"';
+					        $computerIconCSS = 'class= "grammar_icon_computer"';
+
+					        $iconCSS = "";
+
+					        $this -> load -> library('Mobile-Detect/Mobile_Detect');
+					        $detect = new Mobile_Detect();
+					        if ($detect->isMobile() || $detect->isTablet() || $detect->isAndroidOS()) {
+					        	$iconCSS = $mobileIconCSS;
+							} else {
+								$iconCSS = $computerIconCSS;
+							}
+
+					        $asset_url = asset_url();
+
+							for ($i = 1; $i <=4; $i++) {
+								if ($cards[$i-1] != null) {
+									$imageID = $i + 37;
+									$icon = "<br/><br/><img $iconCSS src=$asset_url/img/grammarPoints/$imageID.pic.jpg><br/>";
+									echo $icon;
+									echo nl2br($cards[$i-1]);
+								}
+							}
 						?>
 					</p><br/><br/>
 

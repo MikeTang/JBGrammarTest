@@ -460,12 +460,15 @@ body{
     float:right;
     color: #999;
 }
-.searchResult_icon{
-    width: 5%;
+.grammar_icon_mobile{
+    width: 6%;
     align: left;
-
 }
 
+.grammar_icon_computer{
+    width: 3%;
+    align: left;
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */
