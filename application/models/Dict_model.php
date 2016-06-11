@@ -63,7 +63,6 @@ class Dict_model extends CI_Model
         if ($partsCount > 0) {
             foreach ($parts as $keyword) {
                 $spottedUnits = $this->atomSearch($keyword);
-                // $this->BH->echor($spottedUnits);
                 array_push($allUnitsArrays, $spottedUnits);
             }
         }
@@ -71,6 +70,9 @@ class Dict_model extends CI_Model
         $allUnitsArrays = array_filter($allUnitsArrays);
 
         $finalUnits = $this->BH->intersectOfArrays($allUnitsArrays);
+
+        // $finalUnits = call_user_func_array('array_intersect', $arr_results);
+        // $this->BH->echor($finalUnits);
 
         $finalGrammars = $this->BH->grammarsInUnits($finalUnits);
         return $finalGrammars;

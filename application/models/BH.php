@@ -11,8 +11,10 @@ class BH extends CI_Model
 
         if ($unitsIn != null) {
             $safeUnits = array_filter($unitsIn);
+            $safeUnits = array_map('trim', $safeUnits);
+            // $this->BH->echor($safeUnits);
 
-            // $sql = "select * from grammarDict where No in ($unitString)";
+            // $sql = "select * from grammarDict where No in ($safeUnits)";
             $this->db->select('*');
             $this->db->from('grammarDict');
             $this->db->where_in('No', $safeUnits);
@@ -78,15 +80,14 @@ class BH extends CI_Model
 
 
     function intersectOfArrays($arraysIn) {
-        $outResults = [];
-
+        // $outResults = [];
+        $outResults = array_pop($arraysIn);
         if ( $arraysIn != null) {
-            $outResults = array_pop($arraysIn);
             $nonEmptyArrays = array_filter($arraysIn);
-            if ( count($nonEmptyArrays) > 1) {
+            // if ( count($nonEmptyArrays) > 1) {
                 foreach ($nonEmptyArrays as $arrayIn) {
                     $outResults = array_intersect($arrayIn, $outResults);
-                }
+                // }
             }
         }
 
