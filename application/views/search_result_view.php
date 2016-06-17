@@ -64,12 +64,13 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 				<div class="study_example">
 					<p> 
 						<?php
-						        $cards = [
+						$cards = [
 						          $study_unit->Description,
 					              $study_unit->Example,
 					              $study_unit->Explanation,
 					              $study_unit->Others,
 					        ];
+					        // $this->BH->echor($cards);
 
 					        $mobileIconCSS = 'class= "grammar_icon_mobile"';
 					        $computerIconCSS = 'class= "grammar_icon_computer"';
@@ -87,12 +88,12 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 					        $asset_url = asset_url();
 
 							for ($i = 1; $i <=4; $i++) {
-								if ($cards[$i-1] != null) {
+								// if ($cards[$i-1] != null) {
 									$imageID = $i + 37;
 									$icon = "<br/><br/><img $iconCSS src=$asset_url/img/grammarPoints/$imageID.pic.jpg><br/>";
 									echo $icon;
 									echo nl2br($cards[$i-1]);
-								}
+								// }
 							}
 						?>
 					</p><br/><br/>

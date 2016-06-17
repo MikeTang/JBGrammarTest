@@ -18,11 +18,14 @@ class BH extends CI_Model
             $this->db->select('*');
             $this->db->from('grammarDict');
             $this->db->where_in('No', $safeUnits);
-
             $query = $this->db->get();
+            $sql = $this->db->last_query();
+            // echo $sql;
+
             $results = $query->result();
         }
 
+        // $this->BH->echor($results);
         return $results;
     }
 
@@ -36,7 +39,6 @@ class BH extends CI_Model
     {
         $spottedUnits = [];
         
-
         $this->db->select($columnOut);
         $this->db->from($table);
         $this->db->like($columnIn, $stringIn, 'both'); 
@@ -48,11 +50,16 @@ class BH extends CI_Model
         //$sql = mysql_real_escape_string($sql);
 
         $query = $this->db->get();
+        // echo $this->db->last_query();
         $results = $query->result();
+
+        // $this->echor($results);
 
         if (count($results) > 0) {
             $spottedUnits = $this->uniqueUnionResult($results, $columnOut);
         }
+
+        // $this->echor($spottedUnits);
 
         return $spottedUnits;
     }
@@ -60,20 +67,34 @@ class BH extends CI_Model
 
 // lab
 
+    function mb_trim($str) {
+        return preg_replace("/(^\s+)|(\s+$)/us", "", $str); 
+    }
+
+    function uniqueClearArray($arrayIn)
+    {
+        $outResults = array_unique($arrayIn);
+        // $outResults = array_map('mb_trim', $outResults);
+        // $outResults = call_user_func_array(trim, $outResults);
+        $outResults = array_filter($outResults);
+        return $outResults;
+    }
+
     function uniqueUnionResult($inResults, $column) {
         $outResults = [];
 
         foreach ($inResults as $result) {
             // $results = preg_split('/[;,，]+/', trim($result->$column));
-            $results = preg_split('/[;,，]+/', $result->$column);
+            $results = preg_split('/[;,，]+/u', $result->$column);
             if ($results != null) {
-                $results = array_filter($results);
+                // $results = array_filter($results);
+                $outResults = array_merge($outResults, $results);
+                // $this->BH->echor($outResults);
             }
-            $outResults = array_merge($outResults, $results);
+            // $this->BH->echor($outResults);
         }
 
-        $outResults = array_unique($outResults);
-        $outResults = array_filter($outResults);
+        $outResults = $this->uniqueClearArray($outResults);
 
         return $outResults;
     }
@@ -81,6 +102,7 @@ class BH extends CI_Model
 
     function intersectOfArrays($arraysIn) {
         // $outResults = [];
+
         $outResults = array_pop($arraysIn);
         if ( $arraysIn != null) {
             $nonEmptyArrays = array_filter($arraysIn);
@@ -89,6 +111,7 @@ class BH extends CI_Model
                     $outResults = array_intersect($arrayIn, $outResults);
                 // }
             }
+            $outResults = array_map('trim', $outResults);
         }
 
         return $outResults;

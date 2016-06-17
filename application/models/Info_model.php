@@ -38,6 +38,7 @@ class Info_model extends CI_Model
 
 
 
+     // collection keywords
      function keywords(){
           $table = 'keywords';
           $sql = "select id, content, count from {$table} order by count;";

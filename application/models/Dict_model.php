@@ -46,6 +46,25 @@ class Dict_model extends CI_Model
         return $query->result();
     }
 
+    function getGrammarID($id){
+        $column = 'Grammar_Units';
+        $sql = "";
+        for ($i=0; $i < count($units); $i++) { 
+            if ($i == 0){
+               $sql = "SELECT *
+                FROM grammarDict
+                WHERE $column = '{$units[$i]}' ";
+                
+            }else{
+                $sql = $sql . "OR $column = '{$units[$i]}' ";
+            }
+        }
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+
+
     // a,an,冦词
     function searchUnits($stringIn) {
         // $stringIn = str_replace("'","\\'", $stringIn);
@@ -56,11 +75,15 @@ class Dict_model extends CI_Model
 
         $allUnitsArrays = [];
 
-        $parts = preg_split("/[,，]+/", $stringIn);
+        $stringIn = $this->BH->mb_trim($stringIn);
+        $parts = preg_split("/[,，]+/u", $stringIn);
 
-        $partsCount = count(array_filter($parts));
+        $parts = $this->BH->mb_trim($parts);
 
-        if ($partsCount > 0) {
+        $parts = array_filter($parts);
+        // $this->BH->echor($parts);
+
+        if (count($parts) > 0) {
             foreach ($parts as $keyword) {
                 $spottedUnits = $this->atomSearch($keyword);
                 array_push($allUnitsArrays, $spottedUnits);
@@ -69,11 +92,17 @@ class Dict_model extends CI_Model
 
         $allUnitsArrays = array_filter($allUnitsArrays);
 
+
+        // $outResults = call_user_func_array('array_merge', $arr));
+
+        // $this->BH->echor($allUnitsArrays);
         $finalUnits = $this->BH->intersectOfArrays($allUnitsArrays);
 
         // $finalUnits = call_user_func_array('array_intersect', $arr_results);
-        // $this->BH->echor($finalUnits);
 
+        $finalUnits = array_map('trim', $finalUnits);
+        $this->BH->echor($finalUnits);
+        
         $finalGrammars = $this->BH->grammarsInUnits($finalUnits);
         return $finalGrammars;
     }

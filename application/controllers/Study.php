@@ -28,6 +28,7 @@ class Study extends CI_Controller
         //explode $study_nums string into an array
         $study_num_array = explode("-", $study_nums);
         $study_units = $this->dict_model->getUnits($study_num_array);
+        $GrammarID = $this->dict_model->getUnits($study_num_array);
 
 
         
@@ -86,7 +87,6 @@ class Study extends CI_Controller
     public function search_result()
     {
 
-
       $_SESSION["current_page"] = current_url();
       //check if locale is set
       if (!isset($_SESSION["locale"])){
@@ -98,12 +98,11 @@ class Study extends CI_Controller
       if ($query == ''){
         redirect('study/search');
       } else {
+        // collecting keywords
         $this->info_model->create_keyword($query);
       }
 
       $result = $this->dict_model->searchUnits($query);
-
-
 
 
       $data['title'] = 'Grammar Dictionary - Search';
