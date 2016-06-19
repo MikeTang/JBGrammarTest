@@ -95,6 +95,7 @@ class Study extends CI_Controller
 
       $query = $this->input->get('query');
 
+      // collect keywords
       if ($query == ''){
         redirect('study/search');
       } else {
@@ -102,11 +103,13 @@ class Study extends CI_Controller
         $this->info_model->create_keyword($query);
       }
 
-      $result = $this->dict_model->searchUnits($query);
+      $results = $this->dict_model->searchUnits($query);
+      // $this->BH->echor($results);
 
 
       $data['title'] = 'Grammar Dictionary - Search';
-      $data['study_units'] = $result;
+      $data['study_units'] = $results;
+      $data['grammars'] = $results;
       $data['query'] = $query;
 
       $this->load->view('templates/header', $data);

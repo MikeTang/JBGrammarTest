@@ -65,7 +65,7 @@ class BH extends CI_Model
     }
 
 
-// lab
+    // lab
 
     function mb_trim($str) {
         return preg_replace("/(^\s+)|(\s+$)/us", "", $str); 
@@ -118,11 +118,9 @@ class BH extends CI_Model
     }
 
     
-	function nameOfVar ($var) 
-	{
+	function nameOfVar($var) {
 		$vuser = array_slice($GLOBALS,8,count($GLOBALS)-8);
-		foreach($vuser as $key=>$value) 
-		{
+		foreach($vuser as $key=>$value) {
 			if($var===$value) return $key ; 
 		}
 	}

@@ -100,7 +100,10 @@ class Dict_model extends CI_Model
 
         // $finalUnits = call_user_func_array('array_intersect', $arr_results);
 
-        $finalUnits = array_map('trim', $finalUnits);
+
+        if ($finalUnits != null) {
+            $finalUnits = array_map('trim', $finalUnits);
+        }
         $this->BH->echor($finalUnits);
         
         $finalGrammars = $this->BH->grammarsInUnits($finalUnits);

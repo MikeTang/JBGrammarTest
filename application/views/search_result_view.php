@@ -42,10 +42,12 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 
 
 								<?php 
-					echo count($study_units)." results <br/><br/>";
+									echo count($study_units)." results <br/><br/>";
 
 								foreach ($study_units as $study_unit): ?>
-									<?php if ($study_unit->Grammar_Units != $study_unit_tracker):?>
+									<?php 
+									// if ($study_unit->Grammar_Units != $study_unit_tracker):
+									?>
 										<!-- <div class="study_unit row"> -->
 										<div class="h4">
 
@@ -71,6 +73,7 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 					              $study_unit->Others,
 					        ];
 					        // $this->BH->echor($cards);
+					        // echo $grammars[0];
 
 					        $mobileIconCSS = 'class= "grammar_icon_mobile"';
 					        $computerIconCSS = 'class= "grammar_icon_computer"';
@@ -88,12 +91,12 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 					        $asset_url = asset_url();
 
 							for ($i = 1; $i <=4; $i++) {
-								// if ($cards[$i-1] != null) {
+								if ($cards[$i-1] != null) {
 									$imageID = $i + 37;
 									$icon = "<br/><br/><img $iconCSS src=$asset_url/img/grammarPoints/$imageID.pic.jpg><br/>";
 									echo $icon;
 									echo nl2br($cards[$i-1]);
-								// }
+								}
 							}
 						?>
 					</p><br/><br/>
@@ -107,7 +110,8 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 											 
 										</div>
 										<?php $study_unit_tracker = $study_unit->Grammar_Units;?>
-									<?php endif;?>
+									<?php //endif;
+									?>
 									
 									<?php $study_units_string = $study_units_string . '-' . $study_unit->Grammar_Units;?>
 								<?php endforeach;?>
