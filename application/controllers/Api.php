@@ -13,6 +13,8 @@ class Api extends CI_Controller
           $this->load->database();
 
           $this->load->model('info_model');
+          $this->load->model('Dict_model');
+          $this->load->model('BH');
      }
 
      public function current_submissions()
@@ -74,5 +76,74 @@ class Api extends CI_Controller
           echo json_encode($fetchedResults);
      }
 
+
+     // auto test
+     public function s($stringIn)
+     {
+          // $stringIn = htmlentities($stringIn);
+          // echo $stringIn;
+          $stringIn = urldecode($stringIn);
+
+          // $fetchedResults = $this->Dict_model->searchUnits($stringIn);
+
+          $units = $this->Dict_model->unitsOfKeywords($stringIn);
+
+          if ($units != null) {
+
+               $grammars = $this->Dict_model->grammarsOfUnits($units);
+
+               // $this->BH->echor($units);
+
+
+               $grammarNos = [];
+
+               foreach ($grammars as $grammar)
+               {
+                    array_push($grammarNos, $grammar->No);
+               }
+
+               // $this->BH->echor($grammarNos);
+               $diffs = array_diff($units, $grammarNos);
+               // $this->BH->echor($diffs);
+
+               $diffString = join(" ", $diffs);
+
+               $result = "";
+
+               $spottedGrammarsCount = count($grammarNos);
+               $diffCount = count($diffs);
+               $missedCount = count($units) - count($grammarNos);
+               if ($diffCount > 0) {
+                    // missed grammar
+                    $result = "Test Failed! Grammar DB missed $missedCount Units: \t$diffString for keyword [$stringIn]";
+                    // reduntant grammar units
+               } else {
+                    // $result = "Test Failed! Grammar DB has reduntant $diffCount Units: \t$diffString for keyword [$stringIn]";
+                    // }
+               // } else {
+                    $result = "Test Passed! Result spotted count[$spottedGrammarsCount]\t by keyword [$stringIn]";
+
+               }
+
+               if (count($spottedGrammarsCount) == 0) {
+                    $result = "Test Pending Confirm! Result spotted count[$spottedGrammarsCount]\t by keyword [$stringIn]";
+
+               }
+          } else {
+               $result = "Test Passed! No Result spotted by keywords [$stringIn]";
+          }
+
+          echo $result;
+
+          // echo json_encode($fetchedResults);
+          // echo count($fetchedResults);
+          return $result;
+
+     }
+
+     function cnKeywords() {
+          $cnKeywords = $this->BH->cnKeywords();
+          print_r(array_values($cnKeywords));
+     }
 
 }?>

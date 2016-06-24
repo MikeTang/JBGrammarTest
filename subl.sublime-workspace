@@ -1,0 +1,752 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"uni",
+				"uniqueClearArray"
+			],
+			[
+				"buil",
+				"http_build_query"
+			],
+			[
+				"all",
+				"allUnitsArrays"
+			],
+			[
+				"ic",
+				"iconCSS"
+			],
+			[
+				"for",
+				"for	PHP: for statement"
+			],
+			[
+				"call",
+				"call_user_func_array"
+			],
+			[
+				"ar",
+				"arraysIn"
+			],
+			[
+				"add",
+				"addslashes"
+			],
+			[
+				"colum",
+				"columnIn"
+			],
+			[
+				"study",
+				"study_unit"
+			],
+			[
+				"disp",
+				"displayCard"
+			],
+			[
+				"str_rep",
+				"str_replace"
+			],
+			[
+				"res",
+				"results"
+			],
+			[
+				"str",
+				"stringIn"
+			],
+			[
+				"inter",
+				"intersectAllSubArrays"
+			],
+			[
+				"fin",
+				"finalUnits"
+			],
+			[
+				"arrfil",
+				"array_filter"
+			],
+			[
+				"array_fil",
+				"array_filter"
+			],
+			[
+				"search",
+				"searchCN"
+			],
+			[
+				"cn",
+				"cnParts"
+			],
+			[
+				"fina",
+				"finalCnUnits"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"arraym",
+				"array_merge"
+			],
+			[
+				"trim",
+				"trimIn"
+			],
+			[
+				"met",
+				"get_meta_tags"
+			],
+			[
+				"ans",
+				"answerArray"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"stu",
+				"study_unit"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"lates",
+				"latestID"
+			],
+			[
+				"bu",
+				"bugUrl"
+			],
+			[
+				"st",
+				"stringOut"
+			],
+			[
+				"teache",
+				"teacher_id"
+			],
+			[
+				"js",
+				"jsonData"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "remove",
+		"selected_items":
+		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 583.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/Volumes/Data/code/php/_jiongbook/yufa/index.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/controllers/Api.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/models/Dict_model.php",
+		"/Volumes/Data/doc/inbox/pydownloadCoding/autoGrammarTest.py",
+		"/Volumes/Data/doc/inbox/pydownloadCoding/usTV.py",
+		"/Volumes/Data/code/python/django/mysite/mysite/urls.py",
+		"/Volumes/Data/code/python/django/mysite/polls/urls.py",
+		"/Volumes/Data/code/python/django/mysite/manage.py",
+		"/Volumes/Data/code/python/django/mysite/polls/views.py",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/models/Info_model.php",
+		"/Volumes/Data/code/php/autoTXT/qmysql/importMysql.sublime-project",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/Study_view.php",
+		"/Users/m/Clouds/nuts/s1/doc/5.txt",
+		"/Volumes/Data/code/php/_jiongbook/yufa/assets/js/vendor/modernizr-2.8.3.min.js",
+		"/Volumes/Data/code/php/_jiongbook/yufa/system/core/Input.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/_publish/localToRemotePublish.sh",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/home_view.php",
+		"/Volumes/Data/doc/instock/projects/grammar/image/index.md",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/controllers/Home.php",
+		"/Users/m/login.do",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/controllers/Study.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/templates/header.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/grammar_search_view.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/assets/css/bootstrap.css",
+		"/Volumes/Data/code/php/_jiongbook/yufa/assets/css/main.css",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/models/Grammar_model.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/models/BH.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/controllers/Test.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/search_result_view.php",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/test_complete_view.php",
+		"/Volumes/Data/mData/_RawASS/I/dh/Community.S02E03.720p.HDTV.x264.ass",
+		"/Volumes/Data/mData/_RawASS/I/dh/Community.S02E02.720p.HDTV.x264.ass",
+		"/Volumes/Data/mData/_RawASS/I/communityI-IV/Community.S02E02.720p.HDTV.x264.ass",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/models/BasicHelper.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/system/core/Loader.php",
+		"/Users/m/Dict_model.php",
+		"/Users/m/Documents/_InfinityDB/FeedDB/_raw/exerciseCards.txt",
+		"/Users/m/Desktop/f_index.tsv",
+		"/Users/m/Desktop/FeedbackSQL_2016-06-02.sql",
+		"/Volumes/Data/code/php/autoTXT/qmysql/rawData/tsv/grammarIndex.txt",
+		"/Users/m/Documents/_InfinityDB/FeedDB/_raw/classModule.txt",
+		"/Volumes/Data/code/php/autoTXT/qmysql/rawData/tsv/grammarDict.txt",
+		"/Volumes/Data/code/php/autoTXT/qmysql/rawData/tsv/grammarKeyPoints.txt",
+		"/Volumes/Data/code/php/autoTXT/qmysql/src/lib/db_configure.php",
+		"/Users/m/Desktop/grammarKeyPoints.txt",
+		"/Volumes/Data/code/python/pyAutoVS5/src/lib/autoSQL.sql",
+		"/Volumes/Data/code/php/laravel/laFeed/node_modules/yargs/README.md",
+		"/Volumes/Data/code/php/laravel/laFeed/gulpfile.js",
+		"/Volumes/Data/code/php/laravel/laFeed/app/Http/routes.php",
+		"/Volumes/Data/code/php/laravel/laFeed/resources/views/welcome.blade.php",
+		"/Volumes/Data/code/php/laravel/laFeed/resources/views/layout.blade.php",
+		"/Volumes/Data/code/php/laravel/laFeed/app/Http/Controllers/PagesController.php",
+		"/Volumes/Data/code/php/laravel/laFeed/resources/views/pages/about.blade.php",
+		"/Volumes/Data/code/php/laravel/laFeed/resources/assets/sass/app.scss",
+		"/Volumes/Data/code/php/laravel/laFeed/public/css/style.css",
+		"/Volumes/Data/code/php/laravel/laFeed/resources/views/pages/layout.blade.php",
+		"/Volumes/Data/code/_inbox/phpInbox.php",
+		"/Users/m/Desktop/try.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/assets/js/plugins.js",
+		"/Volumes/Data/code/php/_jiongbook/yufa/system/helpers/url_helper.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/signup_view.php",
+		"/Volumes/Data/code/php/_jiongbook/yufa/application/views/templates/nav.php",
+		"/Volumes/Data/code/python/pyAutoVS/src/lib/sql/dba.py",
+		"/Volumes/Data/code/python/pyAutoVS/src/autoVS.py",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/User/pyenv.sublime-build",
+		"/Volumes/Data/doc/instock/projects/a.md",
+		"/Users/m/Desktop/usTV.py",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/User/pyenv",
+		"/Volumes/Data/code/python/pybin/pybinSrc/txt2sqlite",
+		"/Volumes/Data/_P/tdev/Sublime Text.app/Contents/SharedSupport/bin/subl",
+		"/Volumes/Data/_P/tdev/Sublime Text.app/Contents/MacOS/Packages/Python.sublime-package",
+		"/Volumes/Data/_P/tdev/Sublime Text.app/Contents/Resources/PYTHON.icns",
+		"/Users/m/Library/Application Support/Sublime Text 3/Cache/Python/Python.sublime-syntax.cache",
+		"/Users/m/Library/Application Support/Sublime Text 3/Cache/Python/Python.sublime-syntax.rcache",
+		"/Volumes/Data/tech/_techNotes/GripTheDP/designpatterns/designpatterns.iml",
+		"/Volumes/Data/tech/_techNotes/coding/strategy/UnderstandingDP/strategy/MiniDuckSimulator.java",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Volumes/Data/code/php/HomeWorkSite/Code/index.php",
+		"/Volumes/Data/code/php/HomeWorkSite/Code/assets/css/main.css",
+		"/Volumes/Data/code/feedback/FeedSys/FeedSys/Info.plist",
+		"/Users/m/Desktop/homework.json",
+		"/Users/m/Desktop/locale",
+		"/Volumes/Data/code/php/_jiongbook/Grammar/application/controllers/Signup.php",
+		"/Volumes/Data/code/php/_jiongbook/Grammar/assets/js/plugins.js",
+		"/Volumes/Data/code/php/_jiongbook/Grammar/application/third_party/taobaoSDK/top/TopClient.php",
+		"/Volumes/Data/code/php/JBGrammarTest/application/helpers/utility_helper.php",
+		"/Users/m/Downloads/sdk-php-23362198/top/RequestCheckUtil.php",
+		"/Volumes/Data/code/python/sandbox.py",
+		"/Users/m/Desktop/phpInbox.php",
+		"/Users/m/Desktop/js.js",
+		"/Users/m/Documents/_InfinityDB/FeedDB/_raw/grammarDict.txt",
+		"/Volumes/Data/code/php/autoTXT/qmysql/src/lib/db_import.php",
+		"/Volumes/Data/code/php/autoTXT/qmysql/rawData/tsv/grammarTests.txt",
+		"/Users/m/Desktop/testMysqlConnection.php",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/User/php.sublime-build",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/User/php",
+		"/Users/m/Library/Application Support/Sublime Text 3/Packages/User/php.user-ca-bundle",
+		"/Users/m/Desktop/ffmpeg.txt",
+		"/Volumes/Data/code/php/JBGrammarTest/system/helpers/file_helper.php",
+		"/Volumes/Data/code/php/JBGrammarTest/application/views/test_start_view.php",
+		"/Volumes/Data/code/php/JBGrammarTest/application/cache/.htaccess",
+		"/Users/m/Downloads/共享信息.txt",
+		"/Users/m/Documents/_InfinityDB/FeedDB/_raw/student.txt",
+		"/Volumes/Data/doc/instock/projects/b.md",
+		"/Volumes/Data/code/php/JBGrammarTest/assets/js/recordermp3/libmp3lame.min.js",
+		"/Volumes/Data/_P/p/Pro/ProductiveNow/2016Q3 copy.kmmacros"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Volumes/Data/code/php/_jiongbook/yufa",
+			"/Volumes/Data/code/php/laravel/laFeed",
+			"/Volumes/Data/code/php/_jiongbook/yufa",
+			"/Volumes/Data/code/php/_jiongbook/yufa/",
+			"/Volumes/Data/code/php/_jiongbook/yufa/application",
+			"/Volumes/Data/code/php/_jiongbook/yufa",
+			"/Volumes/Data/code/php/_jiongbook/yufa/assets/css",
+			"/Volumes/Data/code/php/_jiongbook/yufa/assets",
+			"/Volumes/Data/code/php/_jiongbook/yufa/application",
+			"/Volumes/Data/tech/_techNotes/coding/headfirst/designpatterns/strategy",
+			"/Volumes/Data/code/php/HomeWorkSite/Code",
+			"/Volumes/Data/code/php/HomeWorkSite/Code/application",
+			"/Volumes/Data/code/php/_jiongbook",
+			"/Volumes/Data/code/php/JBGrammarTest",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"db.",
+			"study_units",
+			"trim",
+			"stringI",
+			"echo",
+			"sql",
+			"echk",
+			"echor",
+			"atomSearch",
+			"keyword",
+			"intersectOfArrays",
+			"trim",
+			"echo",
+			"result",
+			"resultIneach",
+			"grammarsInUnits",
+			"echor",
+			"outResults",
+			"$y",
+			"uniqueUnionResult",
+			"uniqueClearArray",
+			"selectColumnOutFromTableWhereColumnInLikeStringIn",
+			"uniqueUnionResult",
+			"outResults",
+			"uniqueUnionResult",
+			"echor",
+			"uniqueUnionResult",
+			"page",
+			"study_nums",
+			"study_units",
+			"getUnits",
+			"study_units",
+			"study_unit",
+			"cards",
+			"selectColumnOutFromTableWhereColumnInLikeStringIn",
+			"spottedUnits",
+			"38",
+			"result",
+			"mobile",
+			"search",
+			"virthal",
+			"left",
+			"icon",
+			"logo.png",
+			"intersectOfArrays",
+			"名词",
+			"data-gclp-initialized",
+			"<html class=\"no-js lt-ie9 lt-ie8 lt-ie7\" lang=\"\">",
+			"data-gistbox-initialized",
+			"stringIn",
+			"echo",
+			"category",
+			"echo",
+			"array_filter",
+			"trim",
+			"keyword",
+			"atomSearch",
+			"echor",
+			"echo",
+			"mysql_real_escape_string",
+			"font-size: 2",
+			"study_units",
+			"title",
+			"col-xs-7",
+			"displayCard",
+			"page",
+			"getIntersect",
+			"inCount",
+			"finalUnits",
+			"good",
+			"find",
+			"ood",
+			"meme",
+			"■",
+			"cho",
+			"echo",
+			"echor",
+			"query",
+			"dict_model",
+			"stringIn",
+			"data",
+			"echor",
+			"preg_replace",
+			"isCN",
+			"BasicHelper",
+			"db",
+			"getUnits",
+			"outResults",
+			"intersectAllSubArrays",
+			"keywords",
+			"from keywords",
+			"sql",
+			"select id, content, count",
+			"mysql_real_escape_string",
+			"sql",
+			"uniqueUnionResult",
+			"getIntersect",
+			"my_array_intersect",
+			"getIntersect",
+			"finalUnits",
+			"getIntersect",
+			"my_array_intersect",
+			"box_top",
+			"Search",
+			"placeholder=\"Search\"",
+			"col-xs-10 center",
+			"form",
+			"'",
+			"\"",
+			"print_r",
+			"sql",
+			"allUnitsArrays",
+			"uniqueIntersectResult",
+			"uniqueUnionResult",
+			"print_r",
+			"selectColumnOutFromTableWhereColumnInLikeStringIn",
+			"cnCount",
+			"intersectAllSubArrays",
+			"stringIn",
+			"redirect",
+			"search",
+			"Grammar_Point_",
+			"{",
+			"}",
+			",",
+			"}",
+			"{",
+			"Others"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"<b>",
+			"</b>",
+			"<b>",
+			"unitArray"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 159.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/php.sublime-build",
+	"project": "subl.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"api",
+				"application/controllers/Api.php"
+			],
+			[
+				"d",
+				"application/models/Dict_model.php"
+			],
+			[
+				"index",
+				"index.php"
+			],
+			[
+				"dict",
+				"application/models/Dict_model.php"
+			],
+			[
+				"study",
+				"application/controllers/Study.php"
+			],
+			[
+				"search",
+				"application/views/search_result_view.php"
+			],
+			[
+				"dic",
+				"application/models/Dict_model.php"
+			],
+			[
+				"bh",
+				"application/models/BH.php"
+			],
+			[
+				"info",
+				"application/models/Info_model.php"
+			],
+			[
+				"test",
+				"application/controllers/Test.php"
+			],
+			[
+				"info_model",
+				"application/models/Info_model.php"
+			],
+			[
+				"home",
+				"application/controllers/Home.php"
+			],
+			[
+				"view",
+				"application/views/search_result_view.php"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"app.s",
+				"resources/assets/sass/app.scss"
+			],
+			[
+				"compo",
+				"composer.json"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"styl",
+				"public/css/style.css"
+			],
+			[
+				"layou",
+				"resources/views/layout.blade.php"
+			],
+			[
+				"app.c",
+				"resources/assets/sass/app.scss"
+			],
+			[
+				"layout",
+				"resources/views/layout.blade.php"
+			],
+			[
+				"about",
+				"resources/views/pages/about.blade.php"
+			],
+			[
+				"rout",
+				"app/Http/routes.php"
+			],
+			[
+				"main",
+				"assets/css/main.css"
+			],
+			[
+				"inf",
+				"application/models/Info_model.php"
+			],
+			[
+				"sign",
+				"application/controllers/Signup.php"
+			],
+			[
+				"",
+				"assets/js/plugins.js"
+			],
+			[
+				"plu",
+				"assets/js/plugins.js"
+			],
+			[
+				"alibabaaliqinfcsmsnumsendrequest",
+				"application/third_party/taobaoSDK/top/request/AlibabaAliqinFcSmsNumSendRequest.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 282.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

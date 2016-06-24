@@ -54,6 +54,12 @@ $route['default_controller'] = 'home';
 $route['test/grammar/(:any)'] = 'test/grammar/$1';
 $route['study/(:any)/(:any)/(:any)'] = 'study/index/$1/$2/$3';
 $route['locale/set/(:any)'] = 'locale/set/$1';
+$route['search'] = "study/search";
 
+
+// $default_controller = $route['default_controller'];
+// // $controller_exceptions = array('grammar', 'study', 'locale', 'search');
+// $route["^((?!\b".implode('\b|\b', $controller_exceptions)."\b).*)$"] = $default_controller.'/$1';
+// // $route['404_override'] = '';
 
 

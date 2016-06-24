@@ -64,9 +64,17 @@ class Dict_model extends CI_Model
     }
 
 
+    function searchUnits($stringIn) {
+        $units = $this->unitsOfKeywords($stringIn);
+        // $this->BH->echor($units);
+        $grammars = $this->grammarsOfUnits($units);
+        return $grammars;
+    }
 
     // a,an,冦词
-    function searchUnits($stringIn) {
+    function unitsOfKeywords($stringIn) {
+        $stringIn = htmlentities($stringIn);
+
         // $stringIn = str_replace("'","\\'", $stringIn);
         // if (!get_magic_quotes_gpc()){
             // $stringIn=addslashes($stringIn);
@@ -103,10 +111,16 @@ class Dict_model extends CI_Model
 
         if ($finalUnits != null) {
             $finalUnits = array_map('trim', $finalUnits);
+            $finalUnits = array_unique($finalUnits);
+            sort($finalUnits);
         }
-        $this->BH->echor($finalUnits);
-        
-        $finalGrammars = $this->BH->grammarsInUnits($finalUnits);
+        // $this->BH->echor($finalUnits);
+        return $finalUnits;
+    }
+
+    function grammarsOfUnits($units)
+    {
+        $finalGrammars = $this->BH->grammarsInUnits($units);
         return $finalGrammars;
     }
 

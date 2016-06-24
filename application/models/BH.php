@@ -50,7 +50,7 @@ class BH extends CI_Model
         //$sql = mysql_real_escape_string($sql);
 
         $query = $this->db->get();
-        // echo $this->db->last_query();
+        
         $results = $query->result();
 
         // $this->echor($results);
@@ -59,6 +59,7 @@ class BH extends CI_Model
             $spottedUnits = $this->uniqueUnionResult($results, $columnOut);
         }
 
+        // echo $this->db->last_query();
         // $this->echor($spottedUnits);
 
         return $spottedUnits;
@@ -76,7 +77,9 @@ class BH extends CI_Model
         $outResults = array_unique($arrayIn);
         // $outResults = array_map('mb_trim', $outResults);
         // $outResults = call_user_func_array(trim, $outResults);
+        $outResults = array_map('trim', $outResults);
         $outResults = array_filter($outResults);
+        sort($outResults);
         return $outResults;
     }
 
@@ -142,4 +145,21 @@ class BH extends CI_Model
         }
         return $isCN;
     }
+
+    function cnKeywords() {
+        $results = [];
+
+        $this->db->select('Grammar_Point');
+        $this->db->from('grammarKeyPoints');
+            // $this->db->where_in('No', $safeUnits);
+        $query = $this->db->get();
+        $sql = $this->db->last_query();
+            // echo $sql;
+
+        $results = $query->result();
+
+        // $this->BH->echor($results);
+        return $results;
+    }
+
 }?>

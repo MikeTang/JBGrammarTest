@@ -104,10 +104,15 @@
 
 				</div>
 
-					<a class="btn btn-default btn-bug" href="<?php 
+					<a class="basic_icon_computer" href="<?php 
 						$bugUrl = base_url(uri_string());
 						echo site_url('api/newBug/'.$bugUrl); ?>">
-						<?php echo '发现错误'; ?>
+						<?php 
+						$iconCSS = 'class= "basic_icon_computer"';
+						$icon = "<img $iconCSS src=$asset_url/img/bug.jpg>";
+						echo $icon;
+						echo '发现错误'; 
+						?>
 					</a>
 					<br/><br/>
 				<div class="box_bottom">

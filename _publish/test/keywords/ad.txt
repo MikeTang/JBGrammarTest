@@ -1,0 +1,5 @@
+a,an,冠词
+read
+what
+why
+w
