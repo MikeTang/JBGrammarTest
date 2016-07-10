@@ -151,6 +151,47 @@ body{
     width:30%;
     margin-top: 11%;
 }
+
+.main_banner{
+    width:70%;
+    margin-top: -1%;
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-bottom: -5%;
+
+    text-align: center;
+}
+
+.test_banner{
+    width:80%;
+    margin-top: 15%;
+    margin-bottom: 0%;
+    margin-left: 11%;
+    margin-right: 10%;
+    text-align: center;
+
+}
+
+
+.tip_icon_gif{
+    margin-top: -40%;
+
+    margin-left: 15%;
+    width: 20px
+    /*align: left;*/
+}
+
+.main_intro_gif{
+    width:65%;
+    margin-top: -10%;
+    margin-left: 18%;
+    margin-right: 20%;
+    /*margin-bottom: 10%;*/
+    margin-bottom: 100px;
+
+    text-align: center;
+}
+
 .logo img{
     margin-top: 10px;
     height:27px;
@@ -218,7 +259,7 @@ body{
         display: block;
     }
 .home_page{
-    /*width: 200px;*/
+    width: 200px;
     margin-top: 50px;
     min-width: 0;
     padding-left: 30px;
@@ -461,16 +502,16 @@ body{
     color: #999;
 }
 .grammar_icon_mobile{
-    width: 8%;
-    align: left;
+    width: 20px;
+    /*align: left;*/
 }
 
 .grammar_icon_computer{
-    width: 3%;
-    align: left;
+    width: 20px
+    /*align: left;*/
 }
 .basic_icon_computer{
-    width: 100%;
+    width: 20px
 }
 /* ==========================================================================
    Media Queries

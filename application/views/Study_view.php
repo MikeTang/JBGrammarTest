@@ -16,7 +16,10 @@
 						</div>
 
 						<div class="col-xs-12 col-sm-2">
-							<div class="page_numer"><?php echo $current_page; ?>/<?php echo $total_pages; ?></div>
+							<div class="page_numer"><?php 
+							// fix safari 
+							$current_page_string = strval(round($current_page));
+							echo $current_page_string; ?>/<?php echo $total_pages; ?></div>
 						</div>
 
 						<div class="col-xs-12"><div class="line"></div></div>
@@ -118,14 +121,25 @@
 				<div class="box_bottom">
 					
 					<?php if ($current_page > 1):?>
-						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page-1) );?>" class="btn back_button f_l transition"><?php echo $_SESSION['BTN_BACK']; ?></a>
+					<a href="
+						<?php
+							$toPage = $current_page-1;
+							$toURL = "study/display/$result_id/$study_unit->uID/$toPage";
+							echo site_url($toURL);
+						?>" 
+						class="btn back_button f_l transition"><?php echo $_SESSION['BTN_BACK']; ?>
+					</a>
 					<?php endif;?>
-					
-
 
 
 					<?php if ($current_page < $total_pages):?>
-						<a href="<?php echo site_url('study/' . $result_id . '/' . $study_nums . '/' . ($current_page+1)   );?>" class="btn btn-default next_button f_r transition" ><?php echo $_SESSION['BTN_NEXT']; ?></a>
+						<a href="
+						<?php
+							$toPage = $current_page+1;
+							$toURL = "study/display/$result_id/$study_unit->uID/$toPage";
+							echo site_url($toURL);
+						?>" 
+						class="btn btn-default next_button f_r transition" ><?php echo $_SESSION['BTN_NEXT']; ?></a>
 					<?php endif; ?>
 				</div>
 

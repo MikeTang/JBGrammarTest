@@ -46,6 +46,32 @@ class Dict_model extends CI_Model
         return $query->result();
     }
 
+    function getUnitsByUID($uid){
+        $column = 'uID';
+        $sql = "SELECT *
+                FROM grammarDict
+                WHERE $column = '$uid'
+                ";
+                
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+
+     function uidOfUnit($unit){
+          $sql =   "SELECT uID 
+                    FROM grammarDict
+                    where Grammar_Units = $unit
+                    ";
+
+          $query = $this->db->query($sql);
+          $results = $query->result();
+          $result = $results[0]->uID;
+          echo $result;
+          return $results;
+     }
+
+
     function getGrammarID($id){
         $column = 'Grammar_Units';
         $sql = "";

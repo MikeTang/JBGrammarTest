@@ -17,9 +17,49 @@ class Study extends CI_Controller
       $this->load->model('info_model');
     }
 
+
+
+    public function display($result_id, $uid, $page) {
+        $_SESSION["current_page"] = current_url();
+        //check if locale is set
+        if (!isset($_SESSION["locale"])){
+           redirect("lang/set/cn");     
+        }
+        //explode $study_nums string into an array
+        $study_units = $this->dict_model->getUnitsByUID($uid);
+
+
+        
+        //page numbers
+        $data['total_pages'] = count($study_units);
+        $data['current_page'] = $page;
+
+        if (count($study_units) == 0){
+            redirect('test/result/' . $result_id);
+        }
+
+        //other info
+        // $data['title'] = 'Study Unit ' . $study_units[$page-1]->No; 
+        $data['title'] = 'Grammar Units' . $study_units[$page-1]->No; 
+
+        //current page's study unit content
+        $data['result_id'] = $result_id;
+        $data['uid'] = $uid;
+
+
+        $data['study_unit'] = $study_units[$page-1];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav', $data);
+        $this->load->view('Study_view', $data);
+        $this->load->view('templates/footer_test');
+
+    }
+
+
+
+
     public function index($result_id, $study_nums, $page) {
-
-
         $_SESSION["current_page"] = current_url();
         //check if locale is set
         if (!isset($_SESSION["locale"])){

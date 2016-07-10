@@ -26,11 +26,19 @@
 								<p class="t_c"><?php echo $_SESSION['TEXT_RESULTRECOMMEND']; ?></p>
 								<?php foreach ($study_units as $study_unit): ?>
 									<div class="study_unit row">
-										<a class="col-xs-5" href="<?php echo site_url('study/' . $result_id . '/' . str_replace(',', '-', $study_unit['unit']) . '/1' );?>">Unit: <?php echo $study_unit['unit'];?></a>
+										<a class="col-xs-5" href="
+										<?php 
+										// $toURL = "study/display/$result_id/$study_unit['uid']/1";
+										// echo site_url($toURL); 
+										echo site_url('study/' . $result_id . '/' . str_replace(',', '-', $study_unit['unit']) . '/1' );
+										?>
+										">Unit: <?php echo $study_unit['unit'];?></a>
 										<div class="col-xs-7"><?php echo $study_unit['category']; ?> </div>
 										 
 									</div>
-									<?php $study_units_string = $study_units_string . '-' . str_replace(',', '-', $study_unit['unit']);?>
+									<?php 
+									$study_units_string = $study_units_string . '-' . str_replace(',', '-', $study_unit['unit']);
+									?>
 								<?php endforeach;?>
 							</div>
 						</div>	
@@ -44,6 +52,16 @@
 				<div class="box_bottom">
 					<a href="<?php echo site_url('test/start');?>" class="btn back_button f_l transition complete_btn"><?php echo $_SESSION['BTN_RETAKE']; ?></a>
 					<a href="<?php echo site_url('study/' . $result_id . '/' . $study_units_string . '/1'); ?>" type="submit" class="btn btn-default next_button f_r transition complete_btn" name="submit"><?php echo $_SESSION['BTN_STARTSTUDY']; ?></a>
+
+<!-- 					<a href="
+						<?php 
+							$toURL = "study/display/$result_id/$study_unit->uID/1";
+							echo site_url($toURL); 
+						?>"
+						type="submit" class="btn btn-default next_button f_r transition complete_btn" name="submit">
+
+						<?php echo $_SESSION['BTN_STARTSTUDY']; ?>
+					</a> -->
 				</div>
 
 			</div>

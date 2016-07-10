@@ -8,8 +8,12 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 			<div class="box">
 				<div class="box_top search_page">
 
-
-					<h1 class="title"><?php echo $_SESSION['TITLE_GRAMMAR_DICT']; ?></h1>
+					<img class="main_banner " src=
+						<?php 
+						$asset_url = asset_url();
+						echo "$asset_url/img/banner.png";
+						?>
+					>
 
 					<div class="row">
 						<div class="col-xs-10 center">
@@ -24,7 +28,30 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 
 				</div>
 
+
+<div>
+<!-- 			<img class="tip_icon_gif " src=
+						<?php 
+						// $asset_url = asset_url();
+						$asset_url = asset_url();
+						echo "$asset_url/img/tip.png";
+						?>
+						> -->
+
+		<img class="main_intro_gif " src=
+						<?php 
+						// $asset_url = asset_url();
+						$asset_url = asset_url();
+
+						echo "$asset_url/img/search_intro.gif";
+						?>
+						>
+					</div>
+
 			</div>
+
+					</div>
+
 		</div>
 
 	</div>

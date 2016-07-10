@@ -9,7 +9,13 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 					
 					
 
-					<h1 class="title"><?php echo $_SESSION['TITLE_GRAMMAR_DICT']; ?></h1>
+					<img class="main_banner " src=
+					<?php 
+					$asset_url = asset_url();
+					echo "$asset_url/img/banner.png";
+					?>
+
+					>
 					
 					<div class="row">
 						<div class="col-xs-10 center">
@@ -52,15 +58,34 @@ echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 										<div class="h4">
 
 											<a class="study_example" href="
-												<?php
-													$toURL = "study/0/{$study_unit->Grammar_Units}/1";
-													echo site_url($toURL);
-												?>
-											" target="_blank">
-											<?php 
-												// echo "Unit: {$study_unit->Grammar_Units}"
-												echo "Unit: $study_unit->No $study_unit->Name"
-											?>
+	<?php
+
+
+     // function uidOfUnit($unit){
+     //      $sql =   "SELECT uID 
+     //                FROM grammarDict
+     //                where Grammar_Units = $unit
+     //                ";
+
+     //      $query = $this->db->query($sql);
+     //      $results = $query->result();
+     //      $result = $results[0]->uID;
+     //      echo $result;
+     //      return $results;
+     // }
+
+
+
+	$page = round(10 * ($study_unit->No - (int)$study_unit->No));
+	// $toURL = "study/0/{$study_unit->Grammar_Units}/1";
+	$toURL = "study/display/0/$study_unit->uID/$page";
+			echo site_url($toURL);
+		?>
+	" target="_blank">
+	<?php 
+		// echo "Unit: {$study_unit->Grammar_Units}"
+		echo "Unit: $study_unit->No $study_unit->Name"
+	?>
 												
 											</a>
 				<div class="study_example">

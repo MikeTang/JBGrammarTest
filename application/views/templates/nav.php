@@ -18,16 +18,27 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       
       <ul class="nav navbar-nav">
-        <a class="logo" href="<?php echo site_url('home/index');?>"><img src="<?php echo asset_url();?>img/logo.png" alt=""></a>
+        <a class="logo" href="
+        <?php 
+        // echo site_url('home/index');
+        echo 'http://jiongbook.com';
+        ?>"><img src="<?php echo asset_url();?>img/logo.png" alt=""></a>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         
         <li>
+          <a href="<?php echo site_url('home/index'); ?>">
+            <?php echo $_SESSION['TITLE_GRAMMAR_TEST']; ?>
+          </a>
+        </li>
+
+        <li>
           <a href="<?php echo site_url('study/search'); ?>">
             <?php echo $_SESSION['TITLE_GRAMMAR_DICT']; ?>
           </a>
         </li>
+
         <li>
 
 

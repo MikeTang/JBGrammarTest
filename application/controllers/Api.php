@@ -35,6 +35,31 @@ class Api extends CI_Controller
      }
 
 
+     public function uidOfUnit($unit){
+          $sql =   "SELECT uID 
+                    FROM grammarDict
+                    where Grammar_Units = $unit
+                    ";
+
+          $query = $this->db->query($sql);
+          $results = $query->result();
+          $result = $results[0]->uID;
+          // echo $result;
+          return $results;
+     }
+
+     public function grammarsOfUid($uid){
+          $sql =   "SELECT * 
+                    FROM grammarDict
+                    where uID = '$uid'";
+
+          $query = $this->db->query($sql);
+          $results = $query->result();
+          print_r($results);
+          return $results;
+     }
+
+
      // student 
 
      public function studentsForTeacher($teacher_id)
@@ -91,9 +116,6 @@ class Api extends CI_Controller
           if ($units != null) {
 
                $grammars = $this->Dict_model->grammarsOfUnits($units);
-
-               // $this->BH->echor($units);
-
 
                $grammarNos = [];
 

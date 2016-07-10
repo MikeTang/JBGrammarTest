@@ -55,6 +55,7 @@ $route['test/grammar/(:any)'] = 'test/grammar/$1';
 $route['study/(:any)/(:any)/(:any)'] = 'study/index/$1/$2/$3';
 $route['locale/set/(:any)'] = 'locale/set/$1';
 $route['search'] = "study/search";
+$route['study/(:any)/(:any)'] = 'study/dict/$1/$2';
 
 
 // $default_controller = $route['default_controller'];

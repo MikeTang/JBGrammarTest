@@ -25,6 +25,10 @@
           <a href="<?php echo site_url('study/search'); ?>"><?php echo $_SESSION['TITLE_GRAMMAR_DICT']; ?></a>
         </li>
 
+        <li>
+          <a href="<?php echo site_url('home/index'); ?>"><?php echo $_SESSION['TITLE_GRAMMAR_TEST']; ?></a>
+        </li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe"></i> 
           <span class="caret"></span>

@@ -1,7 +1,7 @@
 <div class="content">
 	<div class="row mt40">
 		<div class="col-xs-12 t_c nopl nopr">			
-			<img class="main_logo" src="<?php echo asset_url();?>img/main_logo.png"/>
+			<img class="test_banner" src="<?php echo asset_url();?>img/grammar_logo_test.png"/>
 		</div>
 		<?php if ($loggedIn == 1) :?>
 			<div class="col-xs-4 center t_c nopl nopr">	

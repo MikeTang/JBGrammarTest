@@ -14,6 +14,7 @@ class Test extends CI_Controller
       $this->load->library('form_validation');
       //load the login model
       $this->load->model('grammar_model');
+      $this->load->model('dict_model');
     }
 
     public function index(){
@@ -256,6 +257,7 @@ class Test extends CI_Controller
         //create the array to store study unit data
         $unitArray = [];
         $unitArray["unit"] = $question->study_unit;
+        // $unitArray["uid"] = $this->dict_model->uidOfUnit($question->study_unit);
         $unitArray["category"] = $question->category_;
 
         //get user's previous submission
